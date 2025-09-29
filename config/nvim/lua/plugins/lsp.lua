@@ -6,7 +6,7 @@ return {
                 "lua-language-server",
             },
         },
-        config = function(_,opts)
+        config = function(_, opts)
             require("mason").setup(opts)
             local mr = require("mason-registry")
             local function ensure_installed()
@@ -29,8 +29,8 @@ return {
         opts = {
         },
         dependencies = {
-            { "mason-org/mason.nvim", opts = {}},
-        "neovim/nvim-lspconfig",
+            { "mason-org/mason.nvim", opts = {} },
+            "neovim/nvim-lspconfig",
         },
     },
     {
@@ -43,7 +43,7 @@ return {
                 underline = false,
                 signs = false,
                 update_in_insert = true,
-                virtual_text = {spacing =2,prefix="!",suffix="!"},
+                virtual_text = { spacing = 2, prefix = "!", suffix = "!" },
                 severity_sort = true,
                 float = {
                     border = "rounded",
@@ -51,12 +51,12 @@ return {
             }
             )
 
-            local capabilities = require('blink.cmp').get_lsp_capabilities() 
+            local capabilities = require('blink.cmp').get_lsp_capabilities()
             --local lspconfig = require('lspconfig')
             --lspconfig['cmake'].setup({ capabilities = capabilities })
-            
+
             --vim.lsp.config("cmake", {
-                --capabilities = capabilities,
+            --capabilities = capabilities,
             --}):setup()
 
             vim.lsp.config("cmake", {
@@ -73,18 +73,17 @@ return {
                     },
                 },
             })
-            
-        vim.api.nvim_create_autocmd("LspAttach",{
-            group = vim.api.nvim_create_augroup("UserLspConfig",{}),
-            callback = function(ev)
-                 vim.keymap.set("n","K",vim.lsp.buf.hover)
-                vim.keymap.set("n","<leader>d",vim.diagnostic.open_float,{
-                    buffer = ev.buf,
-                    desc = "[LSP] Show diagnostic",
-                })
-        end
-            })
 
+            vim.api.nvim_create_autocmd("LspAttach", {
+                group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+                callback = function(ev)
+                    vim.keymap.set("n", "K", vim.lsp.buf.hover)
+                    vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, {
+                        buffer = ev.buf,
+                        desc = "[LSP] Show diagnostic",
+                    })
+                end
+            })
         end
     }
 }

@@ -1,4 +1,3 @@
-
 require("config.lazy")
 -- backgroud-opacity
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
@@ -35,3 +34,8 @@ require("keymapping")
 vim.api.nvim_set_hl(0, "LineNr", { fg = "#89b4fa", bg = "none" })
 vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#f38ba8", bg = "none", bold = true })
 
+vim.filetype.add({
+    extension = {
+        ejs = "html",
+    },
+})
