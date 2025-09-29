@@ -77,7 +77,7 @@ return {
             vim.api.nvim_create_autocmd("LspAttach", {
                 group = vim.api.nvim_create_augroup("UserLspConfig", {}),
                 callback = function(ev)
-                    vim.keymap.set("n", "K", vim.lsp.buf.hover)
+                    vim.keymap.set("n", "I", vim.lsp.buf.hover)
                     vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, {
                         buffer = ev.buf,
                         desc = "[LSP] Show diagnostic",

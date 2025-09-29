@@ -37,5 +37,6 @@ vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#f38ba8", bg = "none", bold = tru
 vim.filetype.add({
     extension = {
         ejs = "html",
+        sh = "sh",
     },
 })

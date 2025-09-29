@@ -6,17 +6,18 @@ return {
         config = function()
             require("conform").setup({
                 formatters_by_ft = {
-                    xml = { "xmlformatter" },
-                    lua = { "stylua" },
+                    sh         = { "beautysh" },
+                    xml        = { "xmlformatter" },
+                    lua        = { "stylua" },
                     javascript = { "prettier" },
                     typescript = { "prettier" },
-                    markdown = { "prettier" },
-                    ejs = { "prettier" },
-                    yaml = { "prettier" },
-                    c = { "clang-format" },
-                    cpp = { "clang-format" },
-                    python = { "black" },
-                    java = { "google-java-format" },
+                    markdown   = { "prettier" },
+                    ejs        = { "prettier" },
+                    yaml       = { "prettier" },
+                    c          = { "clang-format" },
+                    cpp        = { "clang-format" },
+                    python     = { "black" },
+                    java       = { "google-java-format" },
                 },
                 format_on_save = {
                     lsp_fallback = true,
