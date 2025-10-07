@@ -6,6 +6,7 @@ return {
         config = function()
             require("conform").setup({
                 formatters_by_ft = {
+                    css        = { "prettier" },
                     sh         = { "beautysh" },
                     xml        = { "xmlformatter" },
                     lua        = { "stylua" },

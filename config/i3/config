@@ -1,5 +1,5 @@
 exec --no-startup-id "/home/sydx/.local/bin/ProxyPreSet"
-
+exec --no-startup-id "/home/sydx/.local/bin/tsoff"
 # Custom
 ## Basic Settings
     #dunst for notify-send

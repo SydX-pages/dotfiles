@@ -7,11 +7,10 @@ vim.g.mapleader = "\\"
 vim.g.maplocalleader = "\\"
 
 --Basic Operations
---终端设置了C-hjkl映射则禁用
---vim.keymap.set("i", "<C-h>", "<Left>")
---vim.keymap.set("i", "<C-l>", "<Right>")
---vim.keymap.set("i", "<C-j>", "<Down>")
---vim.keymap.set("i", "<C-k>", "<Up>")
+vim.keymap.set("i", "<C-h>", "<Left>")
+vim.keymap.set("i", "<C-l>", "<Right>")
+vim.keymap.set("i", "<C-j>", "<Down>")
+vim.keymap.set("i", "<C-k>", "<Up>")
 
 vim.keymap.set("n", "<M-H>", "<C-w>h")
 vim.keymap.set("n", "<M-L>", "<C-w>l")

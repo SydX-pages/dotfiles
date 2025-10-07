@@ -29,8 +29,8 @@ return {
             keymap = {
                 preset = 'default',
                 ["<Tab>"] = { "accept", "fallback" },
-                ["<CR>"] = { "accept", "fallback" },
-                ["<Space>"] = { "accept", "fallback" },
+                ["<CR>"] = { "fallback" },
+                ["<Space>"] = { "fallback" },
                 ["<Left>"] = { "fallback" },
                 ["<Right>"] = { "fallback" },
                 ["<Up>"] = { "fallback" },
