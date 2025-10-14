@@ -169,8 +169,9 @@
       "bases:Create new base": false
     }
   },
-  "active": "2f5adc37b84d0c9e",
+  "active": "b7a5228f7bc7904f",
   "lastOpenFiles": [
+    "01.jpg",
     "ssh/config",
     "ssh",
     "home/zshrc",
@@ -181,7 +182,6 @@
     "home/gitconfig",
     "home/bashrc",
     "home/tmux/plugins/tmux-themepack/src/powerline/double/yellow.tmuxtheme",
-    "home/tmux/plugins/tmux-themepack/src/powerline/double/red.tmuxtheme",
     "home/tmux/plugins/tpm/docs/tpm_not_working.md",
     "home/tmux/plugins/tpm/docs/managing_plugins_via_cmd_line.md",
     "home/tmux/plugins/tpm/docs/how_to_create_plugin.md",
