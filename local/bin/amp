@@ -1,0 +1,3 @@
+#!/bin/zsh
+
+pw-loopback --capture-props='node.name=mp300_input' --playback-props='node.name=to_speaker'
