@@ -8,7 +8,7 @@
  */
 
 configuration {
-	font:							"Fantasque Sans Mono 28";
+	font:							"Fantasque Sans Mono 16";
     show-icons:                     true;
 	icon-theme: 					"Papirus";
     display-drun: 					"";
@@ -28,7 +28,7 @@ window {
 	border:							0px;
 	border-color:					@ac;
     border-radius:                  30px;
-	width:							1200px;
+	width:							500px;
     location:                       center;
     x-offset:                       0;
     y-offset:                       0;
@@ -36,15 +36,15 @@ window {
 
 prompt {
     enabled: 						true;
-	padding: 						40px 60px 40px 60px;
+	padding: 						20px 30px 20px 30px;
 	background-color: 				@bg2;
 	text-color: 					#FFFFFF;
-	font:							"Iosevka Nerd Font 20";
+	font:							"Iosevka Nerd Font 16";
 }
 
 textbox-prompt-colon {
-	padding: 						40px 60px 40px 60px;
-	font:							"Iosevka Nerd Font 28";
+	padding: 						20px 30px 20px 30px;
+	font:							"Iosevka Nerd Font 16";
 	background-color: 				@bg1;
 	text-color: 					#FFFFFF;
 	expand: false;
@@ -58,7 +58,7 @@ entry {
     expand:                         true;
     horizontal-align:               0;
     placeholder:                    "Search...";
-    padding:                        48px 40px 40px 40px;
+    padding:                        24px 20px 20px 20px;
     margin:                         0px 1000px 0px 0px;
     blink:                          true;
 }
@@ -100,13 +100,13 @@ element {
     text-color:                     @fg;
     orientation:                    horizontal;
     border-radius:                  0px;
-    padding:                        24px 24px 24px -64px;
+    padding:                        12px 12px 12px -32px;
 }
 
 element-icon {
     background-color:               transparent;
     text-color:               		inherit;
-    size:                           96px;
+    size:                           48px;
     border:                         0px;
 }
 

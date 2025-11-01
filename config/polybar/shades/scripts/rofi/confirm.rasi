@@ -5,12 +5,12 @@
 * {
     background-color:       @bg;
     text-color:             @fg;
-	font:				 	"Fantasque Sans Mono 28";
+	font:				 	"Fantasque Sans Mono 16";
 }
 
 window {
-    width:      			600px;
-    padding:    			50px;
+    width:      			400px;
+    padding:    			20px;
     border:					1px;
     border-radius:          0px;
     border-color:           @bg1;

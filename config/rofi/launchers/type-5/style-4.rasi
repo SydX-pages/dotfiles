@@ -21,7 +21,7 @@ configuration {
 
 /*****----- Global Properties -----*****/
 * {
-    font:                        "Iosevka Nerd Font 18";
+    font:                        "Iosevka Nerd Font 14";
 }
 
 /*****----- Main Window -----*****/
@@ -31,7 +31,8 @@ window {
     location:                    center;
     anchor:                      center;
     fullscreen:                  false;
-    width:                       1600px;
+    width:                       1300px;
+    height:                      1000px;
     x-offset:                    0px;
     y-offset:                    0px;
 
@@ -52,7 +53,7 @@ window {
 /*****----- Main Box -----*****/
 mainbox {
     enabled:                     true;
-    spacing:                     50px;
+    spacing:                     10px;
     padding:                     100px;
     background-color:            transparent;
     children:                    [ "inputbar", "message","listview", "mode-switcher" ];
@@ -62,7 +63,7 @@ mainbox {
 inputbar {
     enabled:                     true;
     spacing:                     0px;
-    margin:                      0px 400px;
+    margin:                      0px 300px;
     padding:                     10px;
     border:                      2px;
     border-radius:               100%;
@@ -106,7 +107,7 @@ listview {
     fixed-height:                true;
     fixed-columns:               true;
     
-    spacing:                     10px;
+    spacing:                     5px;
     background-color:            transparent;
     cursor:                      "default";
 }
@@ -147,7 +148,7 @@ element selected.active {
 }
 element-icon {
     background-color:            transparent;
-    size:                        48px;
+    size:                        36px;
     cursor:                      inherit;
 }
 element-text {
