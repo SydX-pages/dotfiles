@@ -4,7 +4,7 @@ exec --no-startup-id "/home/sydx/.local/bin/tsoff"
 ## Basic Settings
     #dunst for notify-send
 exec --no-startup-id dunst
-exec --no-startup-id "echo 'Xft.dpi:144' | xrdb -merge"
+#exec --no-startup-id "echo 'Xft.dpi:144' | xrdb -merge"
 #exec --no-startup-id picom --config ~/.config/picom/picom.conf
 exec --no-startup-id picom
 
