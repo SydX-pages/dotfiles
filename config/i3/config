@@ -21,7 +21,7 @@ bindsym $mod+c move position center
 ## Global Firmware Settings
 bindsym $mod+x exec "/home/sydx/.local/bin/TouchpadSwitch"
 
-exec --no-startup-id "$HOME/.config/polybar/shades/launch.sh --shades
+exec --no-startup-id "$HOME/.config/polybar/shades/launch.sh --shades"
 ###&& $HOME/.config/polybar/shades/scripts/pywal.sh ~/Pictures/WallPapers/wallhaven-xe82x3.jpg"
 
 
