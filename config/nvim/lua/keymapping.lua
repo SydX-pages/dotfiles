@@ -31,30 +31,26 @@ vim.keymap.set("n", "<C-z>", "u")
 -- Fast Pointer Move
 local opts = { noremap = true, silent = true }
 
-vim.keymap.set('n', '<M-j>', function()
-    vim.api.nvim_feedkeys("10j", "n", false)
+vim.keymap.set("n", "<M-j>", function()
+	vim.api.nvim_feedkeys("10j", "n", false)
 end, opts)
-vim.keymap.set('n', '<M-k>', function()
-    vim.api.nvim_feedkeys("10k", "n", false)
-end, opts)
-
-vim.keymap.set('i', '<M-j>', function()
-    vim.cmd('normal! 10j')
-end, opts)
-vim.keymap.set('i', '<M-k>', function()
-    vim.cmd('normal! 10k')
+vim.keymap.set("n", "<M-k>", function()
+	vim.api.nvim_feedkeys("10k", "n", false)
 end, opts)
 
-vim.keymap.set('v', '<M-j>', function()
-    vim.cmd('normal! 10j')
+vim.keymap.set("i", "<M-j>", function()
+	vim.cmd("normal! 10j")
 end, opts)
-vim.keymap.set('v', '<M-k>', function()
-    vim.cmd('normal! 10k')
+vim.keymap.set("i", "<M-k>", function()
+	vim.cmd("normal! 10k")
 end, opts)
 
-
-
-
+vim.keymap.set("v", "<M-j>", function()
+	vim.cmd("normal! 10j")
+end, opts)
+vim.keymap.set("v", "<M-k>", function()
+	vim.cmd("normal! 10k")
+end, opts)
 
 --Save and Buffer actions
 vim.keymap.set("n", "<C-s>", "<cmd>w<CR>")
@@ -110,7 +106,6 @@ vim.keymap.set("i", "<M-h>", "<C-o>^")
 vim.keymap.set("v", "<M-l>", "$")
 vim.keymap.set("v", "<M-h>", "^")
 
-
 --Code Runner
 vim.keymap.set("n", "<M-Return>", "<cmd>RunCode<CR>")
 vim.keymap.set("i", "<M-Return>", "<cmd>RunCode<CR>")
@@ -121,8 +116,8 @@ vim.keymap.set("n", "<leader>f", "<cmd>Telescope file_browser<cr>")
 
 --Format
 vim.keymap.set("n", "<C-f>", function()
-    require("conform").format({ async = true, lsp_fallback = true })
+	require("conform").format({ async = true, lsp_fallback = true })
 end, { desc = "Format file" })
 vim.keymap.set("i", "<C-f>", function()
-    require("conform").format({ async = true, lsp_fallback = true })
+	require("conform").format({ async = true, lsp_fallback = true })
 end, { desc = "Format file" })
