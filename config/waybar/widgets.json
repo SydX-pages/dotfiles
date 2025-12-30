@@ -1,0 +1,50 @@
+{
+    "group/cpu": {
+        "modules": [
+            "custom/cpu",
+            "cpu"
+        ],
+        "orientation": "vertical",
+        "spacing": 1
+    },
+    "custom/cpu": {
+        "exec": "~/.config/waybar/scripts/cpu_name.sh",
+        "format": "{}",
+        "tooltip": false,
+        "on-click": "flatpak run io.missioncenter.MissionCenter    ",
+        "on-click-right": "kitty bash btop"
+    },
+    "cpu": {
+        "format": "Total:{usage}%\nCore0:{usage0}%\nCore1:{usage1}%\nCore2:{usage2}%\nCore3:{usage3}%",
+        "tooltip": false,
+        "on-click": "flatpak run io.missioncenter.MissionCenter    ",
+        "on-click-right": "kitty bash btop"
+    },
+    "memory": {
+        "format": "      RAM\n Memory: {used}G / {total}G ({percentage}%) | {avail}G Available\n Swap: {swapUsed}G / {swapTotal}G ({swapPercentage}%) | {swapAvail}G Available",
+        "tooltip": false,
+        "on-click": "flatpak run io.missioncenter.MissionCenter    ",
+        "on-click-right": "kitty bash btop"
+    },
+    "disk#root": {
+        "format": "󰋊 FS_ROOT \n {path}: {free} available({percentage_free}%)\n{used} used out of {total} on {path} ({percentage_used}%)",
+        "path": "/",
+        "tooltip": false,
+        "on-click": "flatpak run io.missioncenter.MissionCenter    ",
+        "on-click-right": "kitty bash btop"
+    },
+    "disk#home": {
+        "format": "  󰋊 FS_HOME \n {path}: {free} available({percentage_free}%)\n{used} used out of {total} on {path} ({percentage_used}%)",
+        "path": "/home",
+        "tooltip": false,
+        "on-click": "flatpak run io.missioncenter.MissionCenter    ",
+        "on-click-right": "kitty bash btop"
+    },
+    "custom/gpu": {
+        "exec": "~/.config/waybar/scripts/gpu_name.sh",
+        "format": "{}\nClick For More Info",
+        "tooltip": false,
+        "on-click": "flatpak run io.missioncenter.MissionCenter    ",
+        "on-click-right": "kitty bash btop"
+    }
+}

@@ -1,0 +1,5 @@
+#!/bin/zsh
+
+temp=$(awk '{printf "%.1f°C",$1/1000}' /sys/class/thermal/thermal_zone0/temp)
+
+echo "($temp)"

@@ -1,0 +1,4 @@
+#!/bin/zsh
+
+sudo tailscale set --exit-node=100.86.43.111 --exit-node-allow-lan-access=true
+

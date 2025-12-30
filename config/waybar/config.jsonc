@@ -1,0 +1,100 @@
+// -*- mode: jsonc -*-
+[
+    {
+        "layer": "top", // Waybar at top layer
+        "position": "top", // Waybar position (top|bottom|left|right)
+        "height": 18, // Waybar height (to be removed for auto height)
+        "width": 2560,
+        // "width": 1280, // Waybar width
+        "spacing": 4, // Gaps between modules (4px)
+        // Choose the order of the modules
+        "modules-left": [
+            "custom/arch",
+            "idle_inhibitor",
+            "custom/separator",
+            "custom/rofi",
+            "custom/separator",
+            "custom/_files",
+            "custom/separator",
+            "custom/edit",
+            "custom/separator",
+            "custom/help",
+            "custom/separator",
+            "niri/workspaces"
+        ],
+        "modules-center": [
+            "custom/todo",
+            "custom/separator",
+            "clock",
+            "custom/weather",
+            "custom/separator",
+            "custom/countdown"
+        ],
+        "modules-right": [
+            "pulseaudio",
+            "custom/separator",
+            "backlight",
+            "custom/separator",
+            "network",
+            "custom/separator",
+            "bluetooth",
+            "custom/separator",
+            "temperature",
+            "custom/separator",
+            "battery",
+            "battery#bat2",
+            "custom/power"
+        ],
+        //Modules configuration
+        "include": [
+            "~/.config/waybar/modules.json"
+        ]
+    },
+    {
+        "layer": "top",
+        "position": "bottom",
+        "height": 30,
+        "spacing": 20,
+        "modules-center": [
+            "image#terminal",
+            "image#browser",
+            "image#files",
+            "image#qq",
+            "image#wechat",
+            "custom/separator",
+            "wlr/taskbar"
+        ],
+        "modules-right": [
+            "privacy",
+            "tray"
+        ],
+        "modules-left": [
+            "niri/window"
+        ],
+        "include": [
+            "~/.config/waybar/modules.json"
+        ]
+    },
+    {
+        "margin-top": 40,
+        "margin-bottom": 240,
+        "layer": "bottom",
+        "position": "right",
+        "exclusive": false,
+        "spacing": 20,
+        "width": 200,
+        "modules-left": [
+            "group/cpu",
+            "custom/gpu"
+        ],
+        "modules-center": [
+            "memory",
+            "disk#root",
+            "disk#home"
+        ],
+        "modules-right": [],
+        "include": [
+            "~/.config/waybar/widgets.json"
+        ]
+    }
+]

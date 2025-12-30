@@ -1,0 +1,172 @@
+* {
+  /* `otf-font-awesome` and SpaceMono Nerd Font are required to be installed for icons */
+  font-family:
+    "Fira Sans Semibold", FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  transition: background-color 0.3s ease-out;
+}
+#waybar.bottom #custom-separator {
+  font-size: 28px;
+  color: #c0caf5;
+}
+window#waybar {
+  background: rgba(26, 27, 38, 0);
+  color: #c0caf5;
+  font-family:
+    SpaceMono Nerd Font,
+    feather;
+  transition: background-color 0.5s;
+}
+#taskbar button image {
+  transition: -gtk-icon-transform 150ms ease;
+}
+#taskbar button.active image {
+  padding-bottom: 12px;
+  -gtk-icon-transform: scale(1.5);
+}
+.modules-left,
+.modules-center,
+.modules-right {
+  background: rgba(0, 0, 8, 0.5);
+  margin: 5px 10px;
+  padding: 0 5px;
+  border-radius: 15px;
+}
+.modules-left {
+  padding: 0;
+}
+.modules-right {
+  padding: 0;
+}
+.modules-center {
+  padding: 0;
+}
+#waybar.bottom .modules-left,
+#waybar.bottom .modules-center,
+#waybar.bottom .modules-right {
+  background: rgba(20, 20, 20, 0);
+  margin: 0;
+  padding: 0;
+}
+#waybar.bottom .modules-center {
+  border-bottom: 3px solid #c0caf5;
+}
+#window {
+  min-height: 60px;
+  background: rgba(20, 20, 20, 0);
+  border-left: 3px solid grey;
+  padding: 0 5px;
+  margin: 1px 1px;
+}
+#waybar.bottom .modules-center {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+#waybar.bottom {
+  min-height: 1px;
+}
+
+#clock,
+#battery,
+#backlight,
+#network,
+#pulseaudio,
+#wireplumber,
+#custom-media,
+#tray,
+#mode,
+#idle_inhibitor,
+#scratchpad,
+#power-profiles-daemon,
+#language,
+#mpd #temperature {
+  padding: 0 10px;
+  border-radius: 15px;
+}
+#clock:hover,
+#battery:hover,
+/*#cpu:hover,
+#memory:hover,
+#disk:hover,*/
+#temperature:hover
+#backlight:hover,
+#network:hover,
+#pulseaudio:hover,
+#wireplumber:hover,
+#custom-media:hover,
+#tray:hover,
+#mode:hover,
+#idle_inhibitor:hover,
+#scratchpad:hover,
+#power-profiles-daemon:hover,
+#language:hover,
+#mpd:hover {
+  background: rgba(26, 27, 38, 0.3);
+}
+
+#pulseaudio {
+  font-size: 15px;
+}
+#custom-power {
+  font-size: 24px;
+  background-color: darkcyan;
+  border-radius: 12px;
+}
+#backlight,
+#bluetooth {
+  font-size: 16px;
+}
+#workspaces button {
+  background: transparent;
+  font-family:
+    SpaceMono Nerd Font,
+    feather;
+  font-weight: 900;
+  font-size: 13pt;
+  color: #c0caf5;
+  border: none;
+  border-radius: 15px;
+}
+
+#workspaces button.active {
+  background: darkcyan;
+}
+
+#workspaces button:hover {
+  background: #11111b;
+  color: #cdd6f4;
+  box-shadow: none;
+}
+
+#custom-arch {
+  margin-left: 5px;
+  padding: 0 10px;
+  font-size: 25px;
+  transition: color 0.5s;
+}
+#custom-arch:hover {
+  color: #1793d1;
+}
+#custom-help:hover,
+#custom-rofi:hover,
+#custom-files:hover,
+#custom-todo:hover,
+#custom-countdown:hover,
+#custom-_files:hover,
+#custom-edit:hover,
+#image:hover {
+  color: black;
+  background-color: #c0caf5;
+  border-radius: 12px;
+}
+#custom-cpu,
+#cpu,
+#disk,
+#memory,
+#custom-gpu {
+  border-radius: 12;
+  margin: 20;
+}
+#custom-cpu {
+  margin: 0;
+}

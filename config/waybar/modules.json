@@ -1,0 +1,245 @@
+{
+    "custom/separator": {
+        "format": "|",
+        "tooltip": false
+    },
+    "custom/arch": {
+        "format": "󰣇",
+        "on-click": "kitty -e sh -c 'fastfetch && sleep 1'",
+        "tooltip": true,
+        "tooltip-format": "I use Arch,btw"
+    },
+    "niri/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": false,
+        "warp-on-scroll": false,
+        "format": "{icon}  {value}",
+        "format-icons": {
+            "urgent": "",
+            "active": "",
+            "default": ""
+        }
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": " ",
+            "deactivated": " "
+        }
+    },
+    "custom/rofi": {
+        "format": " Finder ",
+        "on-click": "~/.config/rofi/launchers/type-5/launcher.sh",
+        "tooltip": false
+    },
+    "custom/_files": {
+        "format": " Files ",
+        "on-click": "kitty bash ranger",
+        "tooltip": false
+    },
+    "custom/edit": {
+        "format": " Edit ",
+        "on-click": "kitty bash -c 'nvim'",
+        "tooltip": false
+    },
+    "custom/help": {
+        "format": " Help ",
+        "on-click": "firefox --new-window https://github.com/SydX-pages/dotfiles/blob/main/README.md",
+        "tooltip": false
+    },
+    "custom/todo": {
+        "format": "   \u00a0{} ",
+        "exec": "~/.config/waybar/scripts/todo/todo.sh",
+        "on-double-click": "~/.config/waybar/scripts/todo/todo.sh mark_done",
+        "on-click-right": "~/.config/waybar/scripts/todo/todo.sh open_tui",
+        "on-click-middle": "~/.config/waybar/scripts/todo/todo.sh middle_click",
+        "return-type": "json",
+        "interval": 5,
+        "tooltip": true
+    },
+    "custom/countdown": {
+        "exec": "~/.config/waybar/scripts/countdown/countdown.sh",
+        "return-type": "json",
+        "format": " {}    ",
+        "interval": 3600,
+        "on-click-right": "kitty bash ~/.config/waybar/scripts/countdown/countdown.sh interactive",
+        "on-scroll-up": "~/.config/waybar/scripts/countdown/countdown.sh scroll-up",
+        "on-scroll-down": "~/.config/waybar/scripts/countdown/countdown.sh scroll-down",
+        "scroll-step": 0.1
+    },
+    "clock": {
+        "format": " {:%H:%M:%S - %e %b} ",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "\t{:%Y-%m-%d}\t",
+        "interval": 1
+    },
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "{icon} {percent}% ",
+        "format-icons": [
+            "󱩎 ",
+            "󱩏 ",
+            "󱩑 ",
+            "󱩒 ",
+            "󱩓 ",
+            "󱩔 ",
+            "󱩖 "
+        ],
+        "scroll-step": 0.15,
+        "on-click": "brightnessctl -d tpacpi::kbd_backlight set 1+",
+        "on-click-right": "brightnessctl -d tpacpi::kbd_backlight set 1-"
+    },
+    "wlr/taskbar": {
+        "format": "{icon}",
+        "icon-size": 32,
+        "spacing": 3,
+        "on-click-middle": "close",
+        "tooltip-format": "{title}",
+        "ignore-list": [],
+        "on-click": "activate"
+    },
+    "niri/window": {
+        "format": "{title}",
+        "icon": true,
+        "icon-size": 30,
+        "rewrite": {}
+    },
+    "pulseaudio": {
+        "format": " {icon}  {volume}% ",
+        "format-bluetooth": "{icon} {volume}%  {format_source} ",
+        "format-bluetooth-muted": " {icon} {format_source} ",
+        "format-muted": " {format_source} ",
+        "format-source": " {volume}%",
+        "format-source-muted": " ",
+        "format-icons": {
+            "headphone": " ",
+            "phone": " ",
+            "portable": " ",
+            "car": " ",
+            "default": [
+                " ",
+                " ",
+                "󰕾 ",
+                " "
+            ]
+        },
+        "scroll-step": 0.15,
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "on-click-right": "pavucontrol"
+    },
+    "bluetooth": {
+        "format": "  {status} ",
+        "format-connected": "  connected ",
+        "tooltip-format": " {controller_alias}\t{controller_address}\n\n{num_connections} connected ",
+        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+        "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
+        "on-click": "sh ~/Custom/Apps/rofi-bluetooth/rofi-bluetooth",
+        "on-click-right": "sh ~/Custom/Apps/rofi-bluetooth/ctl.sh",
+    },
+    "network": {
+        "format-wifi": "    {essid} ({signalStrength}%) ",
+        "format-ethernet": "{ipaddr}/{cidr}  ",
+        "tooltip-format": "{ifname} via {gwaddr}  ",
+        "format-linked": "{ifname} (No IP)  ",
+        "format-disconnected": "Disconnected ⚠ ",
+        "on-click": "sh ~/Custom/Apps//rofi-wifi-menu/rofi-wifi-menu.sh",
+        "on-click-right": "sh ~/Custom/Apps/rofi-wifi-menu/nmtui.sh"
+    },
+    "temperature": {
+        "interval": 10,
+        "hwmon-path": "/sys/devices/platform/coretemp.0/hwmon/hwmon4/temp1_input",
+        "critical-threshold": 100,
+        "format-critical": " {temperatureC}",
+        "format": " {temperatureC}°C "
+    },
+    "niri/language": {
+        "format": "  {} ",
+        "format-en": "EN",
+        "format-zh": "CN"
+    },
+    "privacy": {
+        "icon-spacing": 4,
+        "icon-size": 18,
+        "transition-duration": 250,
+        "modules": [
+            {
+                "type": "screenshare",
+                "tooltip": true,
+                "tooltip-icon-size": 24
+            },
+            {
+                "type": "audio-out",
+                "tooltip": true,
+                "tooltip-icon-size": 24
+            },
+            {
+                "type": "audio-in",
+                "tooltip": true,
+                "tooltip-icon-size": 24
+            }
+        ]
+    },
+    "tray": {
+        "icon-size": 18,
+        "spacing": 10
+    },
+    "custom/weather": {
+        "exec": "wttrbar",
+        "format": "Weather {} ",
+        "return-type": "json",
+        "interval": "3600",
+        "on-click-right": "firefox --new-window https://wttr.in"
+    },
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon}  {capacity}% ",
+        "format-full": "{icon}  {capacity}% ",
+        "format-charging": "  {capacity}% ",
+        "format-plugged": "  {capacity}% ",
+        "format-alt": "{time}  {icon} ",
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ]
+    },
+    "battery#bat2": {
+        "bat": "BAT2"
+    },
+    "image#files": {
+        "path": "/usr/share/icons/hicolor/128x128/apps/org.xfce.thunar.png",
+        "size": 32,
+        "on-click": "Thunar"
+    },
+    "image#browser": {
+        "path": "/usr/share/icons/hicolor/256x256/apps/firefox.png",
+        "size": 32,
+        "on-click": "firefox"
+    },
+    "image#terminal": {
+        "path": "/usr/share/icons/hicolor/256x256/apps/kitty.png",
+        "size": 36,
+        "on-click": "kitty"
+    },
+    "image#qq": {
+        "path": "/home/sydx/.local/share/icons/tencent/QQ.svg",
+        "size": 36,
+        "on-click": "qq"
+    },
+    "image#wechat": {
+        "path": "/home/sydx/.local/share/icons/tencent/wechat.svg",
+        "size": 32,
+        "on-click": "wechat"
+    },
+    "custom/power": {
+        "format": " ⏻ ",
+        "on-click": "~/.config/polybar/scripts/powermenu.sh &",
+        "tooltip-format": "PowerMenu"
+    }
+}

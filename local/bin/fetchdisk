@@ -1,0 +1,4 @@
+#!/bin/zsh
+
+fastfetch | grep -F "Disk (/)" | awk -F ':' '{print ""$2}' | awk -F ' - ' '{print $1}'   
+
