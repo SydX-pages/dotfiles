@@ -34,7 +34,7 @@
 
 ## overview
 
-[看b站吧](https://www.bilibili.com/video/BV1eyByByE7R/?spm_id_from=333.1387.homepage.video_card.click&vd_source=2f8df86593bdf91f590ae8a7f9fe230a)
+不想写了，[看b站吧](https://www.bilibili.com/video/BV1eyByByE7R/?spm_id_from=333.1387.homepage.video_card.click&vd_source=2f8df86593bdf91f590ae8a7f9fe230a)
 
 ## 其他
 
