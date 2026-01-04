@@ -275,7 +275,8 @@ layout {
 // See the binds section below for more spawn examples.
 
 // This line starts waybar, a commonly used bar for Wayland compositors.
-spawn-at-startup "bash" "-c" "swaybg -i /home/sydx/Pictures/WallPapers/wallhaven-k88ozm.jpg"
+spawn-at-startup "swww-daemon"
+spawn-at-startup "bash" "-c" "swww img /home/sydx/Pictures/WallPapers/wallhaven-k88ozm.jpg --transition-type fade"
 spawn-at-startup "waybar"
 spawn-at-startup "bash" "-c" "fcitx5 -d"
 spawn-at-startup "bash" "-c" "sleep 1 && pkill xwayland-satell"
