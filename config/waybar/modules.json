@@ -135,7 +135,7 @@
         "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
         "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
         "on-click": "sh ~/Custom/Apps/rofi-bluetooth/rofi-bluetooth",
-        "on-click-right": "sh ~/Custom/Apps/rofi-bluetooth/ctl.sh",
+        "on-click-right": "sh ~/Custom/Apps/rofi-bluetooth/ctl.sh"
     },
     "network": {
         "format-wifi": "    {essid} ({signalStrength}%) ",
@@ -145,6 +145,13 @@
         "format-disconnected": "Disconnected ⚠ ",
         "on-click": "sh ~/Custom/Apps//rofi-wifi-menu/rofi-wifi-menu.sh",
         "on-click-right": "sh ~/Custom/Apps/rofi-wifi-menu/nmtui.sh"
+    },
+    "custom/vpn": {
+        "format": "VPN {text}",
+        "return-type": "json",
+        "exec": "$HOME/.local/bin/ts_state.sh",
+        "interval": 1,
+        "on-click": "$HOME/.local/bin/ts_toggle.sh"
     },
     "temperature": {
         "interval": 10,
@@ -228,12 +235,12 @@
         "on-click": "kitty"
     },
     "image#qq": {
-        "path": "/home/sydx/.local/share/icons/tencent/QQ.svg",
+        "path": "$HOME/.local/share/icons/tencent/QQ.svg",
         "size": 36,
         "on-click": "qq"
     },
     "image#wechat": {
-        "path": "/home/sydx/.local/share/icons/tencent/wechat.svg",
+        "path": "$HOME/.local/share/icons/tencent/wechat.svg",
         "size": 32,
         "on-click": "wechat"
     },

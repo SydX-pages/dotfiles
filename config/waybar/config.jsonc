@@ -37,6 +37,8 @@
             "custom/separator",
             "network",
             "custom/separator",
+            "custom/vpn",
+            "custom/separator",
             "bluetooth",
             "custom/separator",
             "temperature",
