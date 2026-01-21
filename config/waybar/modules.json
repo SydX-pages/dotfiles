@@ -149,9 +149,9 @@
     "custom/vpn": {
         "format": "VPN {text}",
         "return-type": "json",
-        "exec": "$HOME/.local/bin/ts_state.sh",
+        "exec": "/home/sydx/.local/bin/ts_state.sh",
         "interval": 1,
-        "on-click": "$HOME/.local/bin/ts_toggle.sh"
+        "on-click": "/home/sydx/.local/bin/ts_toggle.sh"
     },
     "temperature": {
         "interval": 10,
@@ -235,12 +235,12 @@
         "on-click": "kitty"
     },
     "image#qq": {
-        "path": "$HOME/.local/share/icons/tencent/QQ.svg",
+        "path": "/home/sydx/.local/share/icons/tencent/QQ.svg",
         "size": 36,
         "on-click": "qq"
     },
     "image#wechat": {
-        "path": "$HOME/.local/share/icons/tencent/wechat.svg",
+        "path": "/home/sydx/.local/share/icons/tencent/wechat.svg",
         "size": 32,
         "on-click": "wechat"
     },
