@@ -3,13 +3,10 @@ require("config.lazy")
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 
-
 vim.g.mapleader = "\\"
 vim.g.maplocalleader = "\\"
 
-
 vim.opt.clipboard = "unnamedplus"
-
 
 vim.opt.relativenumber = false
 vim.opt.number = true
@@ -34,8 +31,11 @@ vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#ffff77", bg = "none", bold = tru
 --"#f38ba8"
 
 vim.filetype.add({
-    extension = {
-        ejs = "html",
-        sh = "sh",
-    },
+	extension = {
+		ejs = "html",
+		sh = "sh",
+	},
 })
+
+vim.o.autoread = true
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, { command = "checktime" })

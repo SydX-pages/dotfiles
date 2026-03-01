@@ -88,7 +88,7 @@ window#waybar {
 /*#cpu:hover,
 #memory:hover,
 #disk:hover,*/
-#temperature:hover
+#temperature:hover,
 #backlight:hover,
 #network:hover,
 #pulseaudio:hover,

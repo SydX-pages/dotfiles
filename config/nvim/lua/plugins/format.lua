@@ -11,6 +11,7 @@ return {
 					xml = { "xmlformatter" },
 					lua = { "stylua" },
 					javascript = { "prettier" },
+					javascriptreact = { "prettier" },
 					typescript = { "prettier" },
 					markdown = { "prettier" },
 					ejs = { "prettier" },
@@ -19,6 +20,8 @@ return {
 					cpp = { "clang-format" },
 					python = { "black" },
 					java = { "google-java-format" },
+					json = { "clang-format" },
+					jsonc = { "clang-format" },
 				},
 				format_on_save = {
 					lsp_fallback = true,
