@@ -41,6 +41,7 @@
 		"custom/separator",
 		"battery",
 		"battery#bat2",
+		"custom/powerpolicy",
 		"custom/power"
 	],
 	// Modules configuration

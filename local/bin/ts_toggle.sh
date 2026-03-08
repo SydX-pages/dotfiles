@@ -1,6 +1,6 @@
 #!/bin/bash
 
-OWN_COUNTRY="CN"  # 例如你的 Exit Node 在美国
+OWN_COUNTRY="CN"
 
 CURRENT_COUNTRY=$(curl -s https://api.ipinfo.io/lite/me\?token\="$(cat ~/.ipinfo_token.txt)" | jq -r ".country_code")
 

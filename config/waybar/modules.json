@@ -149,9 +149,9 @@
 	"custom/vpn": {
 		"format": "VPN {text}",
 		"return-type": "json",
-		"exec": "/home/sydx/.local/bin/ts_state.sh",
+		"exec": "/home/sydx/.config/waybar/scripts/vpnToggle/ts_state.sh",
 		"interval": 1,
-		"on-click": "/home/sydx/.local/bin/ts_toggle.sh"
+		"on-click": "/home/sydx/.config/waybar/scripts/vpnToggle/ts_toggle.sh"
 	},
 	"temperature": {
 		"interval": 10,
@@ -218,6 +218,12 @@
 	},
 	"battery#bat2": {
 		"bat": "BAT2"
+	},
+	"custom/powerpolicy": {
+		"format": "{text}",
+		"exec": "/home/sydx/.config/waybar/scripts/PowerPolicy/cpustate.sh",
+		"interval": 1,
+		"on-click": "/home/sydx/.config/waybar/scripts/PowerPolicy/cpupower.sh"
 	},
 	"image#files": {
 		"path": "/usr/share/icons/hicolor/128x128/apps/org.xfce.thunar.png",

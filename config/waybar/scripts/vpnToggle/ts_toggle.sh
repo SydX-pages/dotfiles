@@ -1,0 +1,1 @@
+/home/sydx/Documents/Repos/MyRepos/dotfiles/local/bin/ts_toggle.sh
