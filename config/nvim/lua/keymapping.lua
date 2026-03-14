@@ -128,3 +128,6 @@ end, { desc = "Format file" })
 vim.keymap.set("i", "<C-f>", function()
 	require("conform").format({ async = true, lsp_fallback = true })
 end, { desc = "Format file" })
+
+--Gemini
+vim.keymap.set("n", "<leader>gm", "<cmd>vs | vertical resize 80 | terminal 'gemini'<cr>")
