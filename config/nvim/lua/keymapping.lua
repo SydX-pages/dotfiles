@@ -12,10 +12,20 @@ vim.keymap.set("i", "<C-l>", "<Right>")
 vim.keymap.set("i", "<C-j>", "<Down>")
 vim.keymap.set("i", "<C-k>", "<Up>")
 
-vim.keymap.set("n", "<M-H>", "<C-w>h")
-vim.keymap.set("n", "<M-L>", "<C-w>l")
-vim.keymap.set("n", "<M-J>", "<C-w>j")
-vim.keymap.set("n", "<M-K>", "<C-w>k")
+vim.keymap.set("n", "<M-H>", "<cmd>wincmd h<CR>")
+vim.keymap.set("n", "<M-L>", "<cmd>wincmd l<CR>")
+vim.keymap.set("n", "<M-J>", "<cmd>wincmd j<CR>")
+vim.keymap.set("n", "<M-K>", "<cmd>wincmd k<CR>")
+
+vim.keymap.set("i", "<M-H>", "<cmd>wincmd h<CR>")
+vim.keymap.set("i", "<M-L>", "<cmd>wincmd l<CR>")
+vim.keymap.set("i", "<M-J>", "<cmd>wincmd j<CR>")
+vim.keymap.set("i", "<M-K>", "<cmd>wincmd k<CR>")
+
+vim.keymap.set("v", "<M-H>", "<cmd>wincmd h<CR>")
+vim.keymap.set("v", "<M-L>", "<cmd>wincmd l<CR>")
+vim.keymap.set("v", "<M-J>", "<cmd>wincmd j<CR>")
+vim.keymap.set("v", "<M-K>", "<cmd>wincmd k<CR>")
 
 vim.keymap.set("n", "<M-Left>", "<C-w>h")
 vim.keymap.set("n", "<M-Right>", "<C-w>l")
@@ -82,24 +92,23 @@ vim.keymap.set("n", "<M-S-->", "<C-w>-")
 --vim.keymap.set("n", "<S-Down>", "v<C-o>j")
 
 --Visual Move Settings
-vim.keymap.set("v", "<S-Down>", "<Down>")
 vim.keymap.set("v", "<S-j>", "<Down>")
 vim.keymap.set("v", "<S-k>", "<Up>")
 vim.keymap.set("v", "<S-h>", "<S-Left>")
 vim.keymap.set("v", "<S-l>", "<S-Right>")
 
 --Head and Tail
-vim.keymap.set("n", "(", "^")
-vim.keymap.set("n", ")", "$")
-vim.keymap.set("v", "(", "^")
-vim.keymap.set("v", ")", "$")
+--vim.keymap.set("n", "(", "^")
+--vim.keymap.set("n", ")", "$")
+--vim.keymap.set("v", "(", "^")
+--vim.keymap.set("v", ")", "$")
 
-vim.keymap.set("n", "<C-Right>", "$")
-vim.keymap.set("n", "<C-Left>", "^")
-vim.keymap.set("i", "<C-Right>", "<C-o>$")
-vim.keymap.set("i", "<C-Left>", "<C-o>^")
-vim.keymap.set("v", "<C-Right>", "$")
-vim.keymap.set("v", "<C-Left>", "^")
+vim.keymap.set("n", "<M-Right>", "$")
+vim.keymap.set("n", "<M-Left>", "^")
+vim.keymap.set("i", "<M-Right>", "<C-o>$")
+vim.keymap.set("i", "<M-Left>", "<C-o>^")
+vim.keymap.set("v", "<M-Right>", "$")
+vim.keymap.set("v", "<M-Left>", "^")
 
 vim.keymap.set("n", "<M-l>", "$")
 vim.keymap.set("n", "<M-h>", "^")
@@ -131,3 +140,10 @@ end, { desc = "Format file" })
 
 --Gemini
 vim.keymap.set("n", "<leader>gm", "<cmd>vs | vertical resize 80 | terminal 'gemini'<cr>")
+
+--Aider
+vim.keymap.set(
+	"n",
+	"<leader>ai",
+	"<cmd>vs | vertical resize 80 | terminal aider --watch-files --no-show-model-warnings<cr>"
+)
