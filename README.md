@@ -12,9 +12,9 @@
 ## 预览
 
 - niri
-  ![xfce](./img/preview/xfce.png)
+  ![niri](https://pic1.zhimg.com/v2-cffc98fb210fe1a731de4df830b7e58b_r.png)
 - xfce4
-  ![xfce](./img/preview/niri.png)
+  ![xfce](https://picx.zhimg.com/v2-944376564684ddc6e6954f3d0fc54770_r.png)
 
 ## polybar
 
