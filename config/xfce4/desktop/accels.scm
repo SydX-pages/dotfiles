@@ -1,0 +1,23 @@
+; xfdesktop GtkAccelMap rc-file         -*- scheme -*-
+; this file is an automated accelerator map dump
+;
+; (gtk_accel_path "<Actions>/XfdesktopWindowIconManager/unminimize" "<Primary>o")
+; (gtk_accel_path "<Actions>/XfdesktopIconView/arrange-icons" "")
+; (gtk_accel_path "<Actions>/XfdesktopIconView/toggle-cursor-2" "<Primary>KP_Space")
+; (gtk_accel_path "<Actions>/XfdesktopIconView/activate-4" "ISO_Enter")
+; (gtk_accel_path "<Actions>/XfdesktopIconView/select-all" "<Primary>a")
+; (gtk_accel_path "<Actions>/XfceDesktop/reload" "<Primary>r")
+; (gtk_accel_path "<Actions>/XfceDesktop/reload-1" "F5")
+; (gtk_accel_path "<Actions>/XfceDesktop/secondary-menu" "<Primary><Shift>F10")
+; (gtk_accel_path "<Actions>/XfceDesktop/next-background" "")
+; (gtk_accel_path "<Actions>/XfceDesktop/primary-menu-2" "Menu")
+; (gtk_accel_path "<Actions>/XfdesktopIconView/unselect-all" "Escape")
+; (gtk_accel_path "<Actions>/XfdesktopIconView/activate-3" "Return")
+; (gtk_accel_path "<Actions>/XfceDesktop/primary-menu" "<Shift>F10")
+; (gtk_accel_path "<Actions>/XfdesktopIconView/toggle-cursor" "<Primary>space")
+; (gtk_accel_path "<Actions>/XfdesktopWindowIconManager/close" "<Primary>c")
+; (gtk_accel_path "<Actions>/XfdesktopIconView/activate" "space")
+; (gtk_accel_path "<Actions>/XfdesktopIconView/activate-5" "KP_Enter")
+; (gtk_accel_path "<Actions>/XfceDesktop/reload-2" "Reload")
+; (gtk_accel_path "<Actions>/XfdesktopIconView/activate-2" "KP_Space")
+; (gtk_accel_path "<Actions>/XfceDesktop/secondary-menu-2" "<Primary>Menu")

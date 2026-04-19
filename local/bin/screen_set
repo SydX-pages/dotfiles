@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+cvt 1120 700 60
+xrandr --newmode "1120x700_60.00" 63.50 1120 1176 1288 1456 700 703 709 727 -hsync +vsync
+xrandr --addmode HDMI-1 1120x700_60.00
+xrandr --output HDMI-1 --mode 1120x700_60.00 --scale 1x1
+echo 'Xft.dpi:64' | xrdb -merge

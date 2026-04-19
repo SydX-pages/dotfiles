@@ -1,0 +1,19 @@
+[Desktop Entry]
+Icon=toolbox
+Exec=/opt/jetbrains-toolbox/jetbrains-toolbox --minimize
+Version=1.0
+Type=Application
+Categories=Development
+Name=JetBrains Toolbox
+StartupWMClass=jetbrains-toolbox
+Terminal=false
+MimeType=
+X-GNOME-Autostart-enabled=true
+X-Icon-Path=/home/sydx/.local/share/icons/hicolor/scalable/apps/toolbox.svg
+X-Installed-Icon-Cache-Path=/home/sydx/.local/share/icons/hicolor
+StartupNotify=false
+X-GNOME-Autostart-Delay=10
+X-MATE-Autostart-Delay=10
+X-KDE-autostart-after=panel
+Hidden=true
+

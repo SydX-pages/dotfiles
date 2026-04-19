@@ -1,0 +1,7 @@
+#!/bin/bash
+
+name=$1
+
+DEST="$HOME/Videos/wf-recorder/"
+
+wf-recorder -f "$DEST/$name-$(date +%F).mp4"

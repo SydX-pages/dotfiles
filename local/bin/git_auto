@@ -1,0 +1,17 @@
+#!/bin/zsh
+
+export PATH=$PATH:/usr/bin:/usr/local/bin
+
+
+dir=$1
+
+cd "$dir" || (echo "'$dir' not existed " && exit 1)
+
+echo "auto_commit" >> 1.txt
+
+/usr/bin/git add .
+/usr/bin/git commit -m "auto commit" 
+/usr/bin/git push
+
+echo "'$dir' pushed"
+
