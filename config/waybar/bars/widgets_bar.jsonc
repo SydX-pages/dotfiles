@@ -1,0 +1,23 @@
+{
+    "name":"widgets_bar",
+	"layer" : "bottom",
+	"position" : "left",
+    "margin-top": 40,
+    "margin-left": 40,
+	"exclusive" : false,
+	"spacing" : 12,
+	"modules-center" : [
+        "group/cpu",
+		"group/memory",
+        "group/disk",
+		"group/gpu"
+
+	],
+    "modules-left":[
+        "group/tuido",
+        "custom/tuido_tail"
+
+    ],
+	"include" : ["~/.config/waybar/modules/widgets.json"],
+	"on-sigusr1" : "noop"
+}

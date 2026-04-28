@@ -1,0 +1,35 @@
+{
+	"layer" : "top",
+	"width" : 1900,
+    "name": "top_bar",
+    "height": 28,
+	"spacing" : 2,
+	"modules-left" : [
+		"custom/arch",
+		"idle_inhibitor",
+
+		"custom/separator",
+        "custom/weather",
+		"custom/separator",
+		"niri/workspaces"
+	],
+	"modules-center" : ["niri/window"],
+	"modules-right" : [
+		"privacy",
+		"tray",
+
+		"custom/separator",
+		"pulseaudio",
+		"custom/separator",
+		"backlight",
+		"custom/separator",
+        "clock",
+		"custom/separator",
+		"network",
+		"custom/separator",
+		"battery"
+	],
+	// Modules configuration
+	"include" : ["~/.config/waybar/modules/modules.json"],
+	"on-sigusr1" : "noop"
+}

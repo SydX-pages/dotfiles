@@ -307,7 +307,7 @@ layout {
 // This line starts waybar, a commonly used bar for Wayland compositors.
 spawn-at-startup "awww-daemon"
 spawn-at-startup "bash" "-c" "awww img /home/sydx/Pictures/WallPapers/wallhaven-k88ozm.jpg --transition-type fade"
-spawn-at-startup "waybar"
+spawn-at-startup "~/.config/waybar/launch.sh"
 spawn-at-startup "bash" "-c" "fcitx5 -d"
 spawn-at-startup "bash" "-c" "sleep 1 && pkill xwayland-satell"
 spawn-at-startup "bash" "-c" "sleep 1 && /home/sydx/.local/bin/tsoff"
@@ -451,6 +451,7 @@ binds {
 
     // Mod-Shift-/, which is usually the same as Mod-?,
     // shows a list of important hotkeys.
+    Mod+B {spawn "pkill" "-SIGUSR1" "-f" "dock_bar";}
     Mod+Shift+Slash { show-hotkey-overlay; }
     Mod+Delete {spawn "~/.config/polybar/scripts/powermenu.sh";}
     // Suggested binds for running programs: terminal, app launcher, screen locker.

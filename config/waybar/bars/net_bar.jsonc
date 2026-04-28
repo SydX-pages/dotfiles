@@ -1,0 +1,17 @@
+{
+    "name": "net_bar",
+    "position": "right",
+	"layer" : "top",
+    "exclusive": false,
+	"width" : 100,
+    "margin-top": 10,
+    "margin-bottom": 1000,
+    "margin-right": 100,
+	"spacing" : 12,
+	"modules-right" : [
+		"custom/vpn",
+		"bluetooth"
+	],
+	"include" : ["~/.config/waybar/modules/modules.json"],
+    "start_hidden": true
+}

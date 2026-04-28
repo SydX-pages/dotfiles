@@ -1,0 +1,223 @@
+{
+	"custom/separator": {
+		"format": "•",
+		"tooltip": false
+	},
+	"custom/arch": {
+		"format": "󰣇",
+		"on-click": "kitty -e sh -c 'fastfetch;zsh'",
+		"tooltip": true,
+		"tooltip-format": "I use Arch,btw"
+	},
+	"idle_inhibitor": {
+		"format": "{icon}",
+		"format-icons": {
+			"activated": "",
+			"deactivated": ""
+		}
+	},
+	"custom/rofi": {
+		"format": "Finder",
+		"on-click": "rofi -show",
+		"tooltip": false
+	},
+	"custom/files": {
+		"format": "Files",
+		"on-click": "kitty bash ranger",
+		"tooltip": false
+	},
+	"custom/edit": {
+		"format": "Edit",
+		"on-click": "kitty bash -c 'nvim'",
+		"tooltip": false
+	},
+	"custom/help": {
+		"format": "Help",
+		"on-click": "firefox --new-window https://github.com/SydX-pages/dotfiles/blob/main/README.md",
+		"tooltip": false
+	},
+	"niri/workspaces": {
+		"disable-scroll": true,
+		"all-outputs": false,
+		"warp-on-scroll": false,
+		"format": "{icon} {value}",
+		"format-icons": {
+			"urgent": "",
+			"active": "",
+			"default": ""
+		}
+	},
+
+	"clock": {
+		"format": " {:%H:%M:%S} ",
+		"format-alt": "{:%Y-%m-%d %H:%M:%S}",
+		"tooltip-format": "<tt><small>{calendar}</small></tt>",
+		"calendar": {
+			"mode": "year",
+			"mode-mon-col": 3,
+			"weeks-pos": "right",
+			"on-scroll": 1,
+			"format": {
+				"months": "<span color='#ffead3'><b>{}</b></span>",
+				"days": "<span color='#ecc6d9'><b>{}</b></span>",
+				"weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+				"weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+				"today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+			}
+		},
+		"interval": 1
+	},
+	"custom/weather": {
+		"exec": "wttrbar",
+		"format": "{}",
+		"return-type": "json",
+		"interval": "3600",
+		"on-click-right": "firefox --new-window https://wttr.in"
+	},
+	"privacy": {
+		"icon-spacing": 4,
+		"icon-size": 12,
+		"transition-duration": 250,
+		"modules": [
+			{
+				"type": "screenshare",
+				"tooltip": true,
+				"tooltip-icon-size": 24
+			},
+			{
+				"type": "audio-out",
+				"tooltip": true,
+				"tooltip-icon-size": 24
+			},
+			{
+				"type": "audio-in",
+				"tooltip": true,
+				"tooltip-icon-size": 24
+			}
+		]
+	},
+	"tray": {
+		"icon-size": 18,
+		"spacing": 10
+	},
+	"pulseaudio": {
+		"format": "{icon} {volume}%",
+		"format-bluetooth": "{icon}{volume}%{format_source} ",
+		"format-bluetooth-muted": "{icon}{format_source} ",
+		"format-muted": " {format_source} ",
+		"format-source": "{volume}%",
+		"format-source-muted": "",
+		"format-icons": {
+			"headphone": "",
+			"phone": "",
+			"portable": "",
+			"car": "",
+			"default": [
+				"",
+				"",
+				"󰕾",
+				""
+			]
+		},
+		"scroll-step": 0.15,
+		"on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+		"on-click-right": "pavucontrol"
+	},
+	"backlight": {
+		"device": "intel_backlight",
+		"format": "{icon} {percent}% ",
+		"format-icons": [
+			"󱩎",
+			"󱩏",
+			"󱩑",
+			"󱩒",
+			"󱩓",
+			"󱩔",
+			"󱩖"
+		],
+		"scroll-step": 0.5,
+		"tooltip": false,
+		"on-click": "brightnessctl -d tpacpi::kbd_backlight set 1+",
+		"on-click-right": "brightnessctl -d tpacpi::kbd_backlight set 1-"
+	},
+	"network": {
+		"format-wifi": " {essid} ({signalStrength}%) ",
+		"format-ethernet": "{ipaddr}/{cidr} 󰩠",
+		"tooltip-format": "{ifname} ip {ipaddr} 󰩠",
+		"format-linked": "{ifname} (No IP) 󰩠",
+		"format-disconnected": "Disconnected ⚠",
+		"on-click-right": "kitty nmtui",
+		"on-click": "pkill -SIGUSR1 -f net_bar"
+	},
+	"custom/vpn": {
+		"format": "VPN {text}",
+		"return-type": "json",
+		"exec": "/home/sydx/.config/waybar/scripts/vpnToggle/ts_state.sh",
+		"interval": 1,
+		"on-click": "/home/sydx/.config/waybar/scripts/vpnToggle/ts_toggle.sh"
+	},
+	"bluetooth": {
+		"format": " {status}",
+		"format-connected": " connected",
+		"tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+		"tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+		"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+		"tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
+		"on-click": "kitty bluetoothctl"
+	},
+	"battery": {
+		"states": {
+			"warning": 30,
+			"critical": 15
+		},
+		"format": "{icon} {capacity}% ",
+		"format-full": "{icon} {capacity}% ",
+		"format-charging": " {capacity}% ",
+		"format-plugged": " {capacity}% ",
+		"format-icons": [
+			"󰁺",
+			"󰁻",
+			"󰁼",
+			"󰁽",
+			"󰁾",
+			"󰁿",
+			"󰂀",
+			"󰂁",
+			"󰂂",
+			"󰁹"
+		],
+		"on-click-right": "kitty -e sh -c 'sudo tlp-stat -b; exec zsh'",
+		"on-click": "pkill -SIGUSR1 -f bat_bar"
+	},
+	"battery#bat2": {
+		"bat": "BAT2"
+	},
+	"custom/powerpolicy": {
+		"format": "{text}",
+		"exec": "/home/sydx/.config/waybar/scripts/PowerPolicy/cpustate.sh",
+		"interval": 1,
+		"on-click": "/home/sydx/.config/waybar/scripts/PowerPolicy/cpupower.sh",
+		"tooltip": false
+	},
+	"custom/power": {
+		"format": "⏻",
+		"on-click": "wlogout",
+		"tooltip-format": "PowerMenu"
+	},
+
+	"wlr/taskbar": {
+		"all-outputs": false,
+		"format": "{icon}",
+		"icon-size": 48,
+		"on-click-middle": "close",
+		"tooltip-format": "{title}",
+		"ignore-list": [],
+		"markup": true,
+		"on-click": "activate"
+	},
+	"niri/window": {
+		"format": "{}",
+		"icon-size": 30,
+	}
+
+}

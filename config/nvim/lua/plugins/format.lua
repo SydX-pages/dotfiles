@@ -21,7 +21,6 @@ return {
 					python = { "black" },
 					java = { "google-java-format" },
 					json = { "clang-format" },
-					jsonc = { "clang-format" },
 				},
 				format_on_save = {
 					lsp_fallback = true,

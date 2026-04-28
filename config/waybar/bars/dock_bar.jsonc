@@ -1,0 +1,13 @@
+[{
+    "name": "dock_bar",
+	"layer" : "top",
+	"position" : "bottom",
+	"exclusive" : false,
+	"spacing" : 20,
+	"modules-center" : [
+        "wlr/taskbar"
+    ],
+	"include" : ["~/.config/waybar/modules/modules.json"],
+    "start_hidden": true
+}
+]

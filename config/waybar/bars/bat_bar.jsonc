@@ -1,0 +1,18 @@
+{
+    "name": "bat_bar",
+    "position": "right",
+	"layer" : "top",
+    "exclusive": false,
+	"width" : 120,
+    "margin-top": 10,
+    "margin-bottom": 1000,
+    "margin-right": 10,
+	"spacing" : 12,
+	"modules-right" : [
+		"battery#bat2",
+		"custom/powerpolicy",
+		"custom/power"
+	],
+	"include" : ["~/.config/waybar/modules/modules.json"],
+    "start_hidden": true
+}

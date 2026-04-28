@@ -1,0 +1,184 @@
+{
+	"temperature": {
+		"interval": 10,
+		"hwmon-path": "/sys/devices/platform/coretemp.0/hwmon/hwmon4/temp1_input",
+		"critical-threshold": 100,
+		"format-critical": " {temperatureC}",
+		"format": " {temperatureC}°C "
+	},
+	"group/cpu": {
+		"modules": [
+			"custom/cpu",
+			"temperature",
+			"cpu"
+		],
+		"drawer": {},
+		"orientation": "vertical"
+	},
+	"custom/cpu": {
+		"exec": "~/.config/waybar/scripts/cpu_name.sh",
+		"format": "{} 󰩤",
+		"tooltip": false,
+		"on-click": "flatpak run io.missioncenter.MissionCenter",
+		"on-click-right": "kitty bash btop"
+	},
+	"cpu": {
+		"format": "Total:{usage}%\nCore0:{usage0}%\nCore1:{usage1}%\nCore2:{usage2}%\nCore3:{usage3}%\nCore4:{usage4}%\nCore5:{usage5}%\nCore6:{usage6}%\nCore7:{usage7}%\nCore8:{usage8}%\nCore9:{usage9}%\nCore10:{usage10}%\nCore11:{usage11}%",
+		"tooltip": false,
+		"on-click": "flatpak run io.missioncenter.MissionCenter",
+		"on-click-right": "kitty bash btop"
+	},
+	"group/memory": {
+		"modules": [
+			"custom/memory",
+			"memory"
+		],
+		"drawer": {},
+		"orientation": "vertical"
+	},
+	"custom/memory": {
+		"format": "  RAM 󰩤",
+		"tooltip": false
+	},
+	"memory": {
+		"format": "Memory: {used}G / {total}G ({percentage}%) | {avail}G Available\n Swap: {swapUsed}G / {swapTotal}G ({swapPercentage}%) | {swapAvail}G Available",
+		"tooltip": false,
+		"on-click": "flatpak run io.missioncenter.MissionCenter    ",
+		"on-click-right": "kitty bash btop"
+	},
+	"group/disk": {
+		"modules": [
+			"custom/disk",
+			"disk#root",
+			"disk#home"
+		],
+		"drawer": {},
+		"orientation": "vertical"
+	},
+	"custom/disk": {
+		"format": "󰋊 Filesystem 󰩤",
+		"tooltip": false
+	},
+	"disk#root": {
+		"format": "󰋊 FS_ROOT \n {path}: {free} available({percentage_free}%)\n{used} used out of {total} on {path} ({percentage_used}%)",
+		"path": "/",
+		"tooltip": false,
+		"on-click": "flatpak run io.missioncenter.MissionCenter",
+		"on-click-right": "kitty bash btop"
+	},
+	"disk#home": {
+		"format": "  󰋊 FS_HOME \n {path}: {free} available({percentage_free}%)\n{used} used out of {total} on {path} ({percentage_used}%)",
+		"path": "/home",
+		"tooltip": false,
+		"on-click": "flatpak run io.missioncenter.MissionCenter",
+		"on-click-right": "kitty bash btop"
+	},
+	"group/gpu": {
+		"modules": [
+			"custom/gpu",
+			"custom/gpu-name",
+			"custom/gpu-info"
+		],
+		"drawer": {},
+		"orientation": "vertical"
+	},
+	"custom/gpu-info": {
+		"exec": "~/.config/waybar/scripts/gpu_info.sh",
+		"format": {},
+		"tooltip": false,
+		"on-click": "flatpak run io.missioncenter.MissionCenter",
+		"on-click-right": "kitty bash btop"
+	},
+
+	"custom/gpu-name": {
+		"exec": "~/.config/waybar/scripts/gpu_name.sh",
+		"format": {},
+		"tooltip": false,
+		"on-click": "flatpak run io.missioncenter.MissionCenter",
+		"on-click-right": "kitty bash btop"
+
+	},
+	"custom/gpu": {
+		"format": "GPU 󰩤",
+		"tooltip": false,
+		"on-click": "flatpak run io.missioncenter.MissionCenter",
+		"on-click-right": "kitty bash btop"
+	},
+	"custom/tuido_0": {
+		"exec": "python ~/.config/waybar/scripts/tuido/main.py ls --index 0",
+		"format": "{}",
+		"tooltip": false,
+		"interval": 1,
+		"on-click": "python ~/.config/waybar/scripts/tuido/main.py set 0 toggle --index",
+		"on-click-right": "python ~/.config/waybar/scripts/tuido/main.py set 0 reminder --index",
+		"on-click-middle": "python ~/.config/waybar/scripts/tuido/main.py rm 0 --index"
+	},
+	"custom/tuido_1": {
+		"exec": "python ~/.config/waybar/scripts/tuido/main.py ls --index 1",
+		"format": "{}",
+		"tooltip": false,
+		"interval": 1,
+		"on-click": "python ~/.config/waybar/scripts/tuido/main.py set 1 toggle --index",
+		"on-click-right": "python ~/.config/waybar/scripts/tuido/main.py set 1 reminder --index",
+		"on-click-middle": "python ~/.config/waybar/scripts/tuido/main.py rm 1 --index"
+
+	},
+	"custom/tuido_2": {
+		"exec": "python ~/.config/waybar/scripts/tuido/main.py ls --index 2",
+		"format": "{}",
+		"tooltip": false,
+		"interval": 1,
+		"on-click": "python ~/.config/waybar/scripts/tuido/main.py set 2 toggle --index",
+		"on-click-right": "python ~/.config/waybar/scripts/tuido/main.py set 2 reminder --index",
+		"on-click-middle": "python ~/.config/waybar/scripts/tuido/main.py rm 2 --index"
+	},
+	"custom/tuido_3": {
+		"exec": "python ~/.config/waybar/scripts/tuido/main.py ls --index 3",
+		"format": "{}",
+		"tooltip": false,
+		"interval": 1,
+		"on-click": "python ~/.config/waybar/scripts/tuido/main.py set 3 toggle --index",
+		"on-click-right": "python ~/.config/waybar/scripts/tuido/main.py set 3 reminder --index",
+		"on-click-middle": "python ~/.config/waybar/scripts/tuido/main.py rm 3 --index"
+
+	},
+	"custom/tuido_4": {
+		"exec": "python ~/.config/waybar/scripts/tuido/main.py ls --index 4",
+		"format": "{}",
+		"tooltip": false,
+		"interval": 1,
+		"on-click": "python ~/.config/waybar/scripts/tuido/main.py set 4 toggle --index",
+		"on-click-right": "python ~/.config/waybar/scripts/tuido/main.py set 4 reminder --index",
+		"on-click-middle": "python ~/.config/waybar/scripts/tuido/main.py rm 4 --index"
+
+	},
+	"custom/tuido_text": {
+		"format": "📋 To Do List",
+		"tooltip": false
+	},
+	"custom/tuido_tail": {
+		"format": "Click To Open Tuido in Terminal",
+		"tooltip": false,
+		"on-click": "kitty python ~/.config/waybar/scripts/tuido/main.py run_tui"
+	},
+	"custom/tuido_add": {
+		"format": "Add +",
+		"on-click": "kitty python ~/.config/waybar/scripts/tuido/main.py add_ui",
+		"tooltip": false
+	},
+	"group/tuido": {
+		"modules": [
+			"custom/tuido_text",
+			"custom/tuido_0",
+			"custom/tuido_1",
+			"custom/tuido_2",
+			"custom/tuido_3",
+			"custom/tuido_4",
+			"custom/tuido_add"
+		],
+		"tooltip": false,
+		"drawer": {},
+		"orientation": "vertical",
+		"spacing": 3
+	}
+}
