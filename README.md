@@ -7,7 +7,7 @@
 - 桌面组件：polybar、plank,rofi、waybar、wlogout...
 - compositor：picom
 - p.s. i3很久不用了。
-- old/里是一个以前参考[polybar themes](https://github.com/adi1090x/polybar-themes)的polybar配置
+- ~~old/里是一个以前参考[polybar themes](https://github.com/adi1090x/polybar-themes)的polybar配置~~
 
 ## 预览
 
@@ -29,6 +29,10 @@
 
 - 参考[SimpleBlueWaybar](https://github.com/d00m1k/SimpleBlueColorWaybar)
 - 更多参见[wiki/examples](https://github.com/Alexays/Waybar/wiki/Examples)
+
+## capture-gif
+
+- [capture-gif](https://gist.github.com/patrickhaahr/75e36373e67c47d81b12593aab8c18e9)
 
 ## 字体
 
