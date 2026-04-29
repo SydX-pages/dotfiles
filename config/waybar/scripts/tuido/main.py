@@ -90,7 +90,7 @@ def print_one(item):
     else:
         status = "⏰"
     deadline = item["deadline"] or "-"
-    return f"{item['id']: <5} {item['content']: <40} {deadline:<10} {status:<5}\n"
+    return f"{item['id']: <5} {item['content']: <25} {deadline:<15} {status:<5}\n"
 
 
 def show(index):

@@ -451,6 +451,7 @@ binds {
 
     // Mod-Shift-/, which is usually the same as Mod-?,
     // shows a list of important hotkeys.
+    Mod+G {spawn "~/.local/bin/capture-gif";}
     Mod+B {spawn "pkill" "-SIGUSR1" "-f" "dock_bar";}
     Mod+Shift+Slash { show-hotkey-overlay; }
     Mod+Delete {spawn "~/.config/polybar/scripts/powermenu.sh";}

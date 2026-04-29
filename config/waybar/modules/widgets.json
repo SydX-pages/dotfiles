@@ -16,7 +16,7 @@
 		"orientation": "vertical"
 	},
 	"custom/cpu": {
-		"exec": "~/.config/waybar/scripts/cpu_name.sh",
+		"exec": "~/.config/waybar/scripts/hardwareInfo/cpu_name.sh",
 		"format": "{} 󰩤",
 		"tooltip": false,
 		"on-click": "flatpak run io.missioncenter.MissionCenter",
@@ -41,7 +41,7 @@
 		"tooltip": false
 	},
 	"memory": {
-		"format": "Memory: {used}G / {total}G ({percentage}%) | {avail}G Available\n Swap: {swapUsed}G / {swapTotal}G ({swapPercentage}%) | {swapAvail}G Available",
+		"format": "Memory: {used}G / {total}G ({percentage}%) | {avail}G Available\n\nSwap: {swapUsed}G / {swapTotal}G ({swapPercentage}%) | {swapAvail}G Available",
 		"tooltip": false,
 		"on-click": "flatpak run io.missioncenter.MissionCenter    ",
 		"on-click-right": "kitty bash btop"
@@ -60,14 +60,14 @@
 		"tooltip": false
 	},
 	"disk#root": {
-		"format": "󰋊 FS_ROOT \n {path}: {free} available({percentage_free}%)\n{used} used out of {total} on {path} ({percentage_used}%)",
+		"format": "{path}: \n{free} available({percentage_free}%)\n{used} used out of {total} on {path} ({percentage_used}%)",
 		"path": "/",
 		"tooltip": false,
 		"on-click": "flatpak run io.missioncenter.MissionCenter",
 		"on-click-right": "kitty bash btop"
 	},
 	"disk#home": {
-		"format": "  󰋊 FS_HOME \n {path}: {free} available({percentage_free}%)\n{used} used out of {total} on {path} ({percentage_used}%)",
+		"format": "{path}: \n{free} available({percentage_free}%)\n{used} used out of {total} on {path} ({percentage_used}%)",
 		"path": "/home",
 		"tooltip": false,
 		"on-click": "flatpak run io.missioncenter.MissionCenter",
@@ -77,21 +77,39 @@
 		"modules": [
 			"custom/gpu",
 			"custom/gpu-name",
-			"custom/gpu-info"
+			"custom/gpu-info",
+			"custom/gpu-name-1",
+			"custom/gpu-info-1",
+			"temperature"
 		],
 		"drawer": {},
 		"orientation": "vertical"
 	},
 	"custom/gpu-info": {
-		"exec": "~/.config/waybar/scripts/gpu_info.sh",
+		"exec": "~/.config/waybar/scripts/hardwareInfo/gpu_info.sh",
+		"format": {},
+		"tooltip": false,
+		"on-click": "flatpak run io.missioncenter.MissionCenter",
+		"on-click-right": "kitty bash btop"
+	},
+	"custom/gpu-name": {
+		"exec": "~/.config/waybar/scripts/hardwareInfo/gpu_name.sh",
+		"format": {},
+		"tooltip": false,
+		"on-click": "flatpak run io.missioncenter.MissionCenter",
+		"on-click-right": "kitty bash btop"
+
+	},
+	"custom/gpu-info-1": {
+		"exec": "~/.config/waybar/scripts/hardwareInfo/gpu_info_1.sh",
 		"format": {},
 		"tooltip": false,
 		"on-click": "flatpak run io.missioncenter.MissionCenter",
 		"on-click-right": "kitty bash btop"
 	},
 
-	"custom/gpu-name": {
-		"exec": "~/.config/waybar/scripts/gpu_name.sh",
+	"custom/gpu-name-1": {
+		"exec": "~/.config/waybar/scripts/hardwareInfo/gpu_name_1.sh",
 		"format": {},
 		"tooltip": false,
 		"on-click": "flatpak run io.missioncenter.MissionCenter",

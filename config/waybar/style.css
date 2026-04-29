@@ -18,10 +18,12 @@ window#waybar.* {
   font-size: 14px;
   font-family: monospace;
 }
-.top_bar,
-.dock_bar {
+.top_bar {
   background: rgba(0, 0, 0, 0);
   border-bottom: 0.5px solid #ff6bbf;
+}
+.dock_bar {
+  background: rgba(0, 0, 0, 0);
 }
 .net_bar,
 .bat_bar {
