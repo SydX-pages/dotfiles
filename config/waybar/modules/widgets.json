@@ -100,13 +100,6 @@
 		"on-click-right": "kitty bash btop"
 
 	},
-	"custom/gpu-info-1": {
-		"exec": "~/.config/waybar/scripts/hardwareInfo/gpu_info_1.sh",
-		"format": {},
-		"tooltip": false,
-		"on-click": "flatpak run io.missioncenter.MissionCenter",
-		"on-click-right": "kitty bash btop"
-	},
 
 	"custom/gpu-name-1": {
 		"exec": "~/.config/waybar/scripts/hardwareInfo/gpu_name_1.sh",

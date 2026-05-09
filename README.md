@@ -55,3 +55,9 @@ yay -S inter-font ttf-jetbrains-mono-nerd otf-apple-pingfang ttf-apple-emoji
 ```sh
 ./install.sh
 ```
+
+# 其他dotfiles相关仓库
+
+- [polybar](https://github.com/SydX-pages/simple-polybar-conf)
+- [waybar](https://github.com/SydX-pages/waybar_with_widgets)
+- [tuido](https://github.com/SydX-pages/tuido)

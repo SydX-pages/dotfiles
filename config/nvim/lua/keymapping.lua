@@ -2,7 +2,7 @@
 --Alt For Fast Move and CompletionChoose;Ctrl For Insert Move;
 --C-p for ColorPicker;C-f for Formatter;S-i for Infos of Functions(maybe)
 --C-s Save;C-z Undo C-r Redo;C-x BufferDelete;C-q Quit
-
+--fold action: za, zc,zC,zo,zO,zR,zM
 vim.g.mapleader = "\\"
 vim.g.maplocalleader = "\\"
 

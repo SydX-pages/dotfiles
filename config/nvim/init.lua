@@ -41,3 +41,14 @@ vim.o.autoread = true
 vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, { command = "checktime" })
 
 vim.opt.splitright = true
+
+-- code fold
+vim.o.foldcolumn = "1" -- 在侧边栏显示折叠列
+vim.o.foldlevel = 99 -- 默认不折叠所有代码
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
+
+vim.o.foldmethod = "expr"
+vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+
+vim.opt.fillchars = { fold = " ", foldopen = "", foldsep = " ", foldclose = "" }
