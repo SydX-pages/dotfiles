@@ -14,6 +14,15 @@ def is_by_index():
         return "quit"
 
 
+def add_tui():
+    content = input("Content: ")
+    ddl = input("Deadline (YYYY-MM-DD optional): ")
+    if ddl:
+        ddl = set_date(ddl)
+    add(content, ddl)
+    show(None)
+
+
 def run_tui():
     try:
         while True:
@@ -30,12 +39,7 @@ def run_tui():
                 show(None)
 
             elif choice == "2" or choice == "add":
-                content = input("Content: ")
-                ddl = input("Deadline (YYYY-MM-DD optional): ")
-                if ddl:
-                    ddl = set_date(ddl)
-                add(content, ddl)
-                show(None)
+                add_tui()
 
             elif choice == "3" or choice == "remove" or choice == "rm":
                 show(None)

@@ -116,51 +116,51 @@
 		"on-click-right": "kitty bash btop"
 	},
 	"custom/tuido_0": {
-		"exec": "python ~/.config/waybar/scripts/tuido/main.py ls --index 0",
+		"exec": "PYTHONPATH=$HOME/.config/waybar/scripts/tuido python -m app.main ls --index 0",
 		"format": "{}",
 		"tooltip": false,
 		"interval": 1,
-		"on-click": "python ~/.config/waybar/scripts/tuido/main.py set 0 toggle --index",
-		"on-click-right": "python ~/.config/waybar/scripts/tuido/main.py set 0 reminder --index",
-		"on-click-middle": "python ~/.config/waybar/scripts/tuido/main.py rm 0 --index"
+		"on-click": "PYTHONPATH=$HOME/.config/waybar/scripts/tuido python -m app.main set 0 toggle --index",
+		"on-click-right": "PYTHONPATH=$HOME/.config/waybar/scripts/tuido python -m app.main set 0 reminder --index",
+		"on-click-middle": "PYTHONPATH=$HOME/.config/waybar/scripts/tuido python -m app.main rm 0 --index"
 	},
 	"custom/tuido_1": {
-		"exec": "python ~/.config/waybar/scripts/tuido/main.py ls --index 1",
+		"exec": "PYTHONPATH=$HOME/.config/waybar/scripts/tuido python -m app.main ls --index 1",
 		"format": "{}",
 		"tooltip": false,
 		"interval": 1,
-		"on-click": "python ~/.config/waybar/scripts/tuido/main.py set 1 toggle --index",
-		"on-click-right": "python ~/.config/waybar/scripts/tuido/main.py set 1 reminder --index",
-		"on-click-middle": "python ~/.config/waybar/scripts/tuido/main.py rm 1 --index"
+		"on-click": "PYTHONPATH=$HOME/.config/waybar/scripts/tuido python -m app.main set 1 toggle --index",
+		"on-click-right": "PYTHONPATH=$HOME/.config/waybar/scripts/tuido python -m app.main set 1 reminder --index",
+		"on-click-middle": "PYTHONPATH=$HOME/.config/waybar/scripts/tuido python -m app.main rm 1 --index"
 
 	},
 	"custom/tuido_2": {
-		"exec": "python ~/.config/waybar/scripts/tuido/main.py ls --index 2",
+		"exec": "PYTHONPATH=$HOME/.config/waybar/scripts/tuido python -m app.main ls --index 2",
 		"format": "{}",
 		"tooltip": false,
 		"interval": 1,
-		"on-click": "python ~/.config/waybar/scripts/tuido/main.py set 2 toggle --index",
-		"on-click-right": "python ~/.config/waybar/scripts/tuido/main.py set 2 reminder --index",
-		"on-click-middle": "python ~/.config/waybar/scripts/tuido/main.py rm 2 --index"
+		"on-click": "PYTHONPATH=$HOME/.config/waybar/scripts/tuido python -m app.main set 2 toggle --index",
+		"on-click-right": "PYTHONPATH=$HOME/.config/waybar/scripts/tuido python -m app.main set 2 reminder --index",
+		"on-click-middle": "PYTHONPATH=$HOME/.config/waybar/scripts/tuido python -m app.main rm 2 --index"
 	},
 	"custom/tuido_3": {
-		"exec": "python ~/.config/waybar/scripts/tuido/main.py ls --index 3",
+		"exec": "PYTHONPATH=$HOME/.config/waybar/scripts/tuido python -m app.main ls --index 3",
 		"format": "{}",
 		"tooltip": false,
 		"interval": 1,
-		"on-click": "python ~/.config/waybar/scripts/tuido/main.py set 3 toggle --index",
-		"on-click-right": "python ~/.config/waybar/scripts/tuido/main.py set 3 reminder --index",
-		"on-click-middle": "python ~/.config/waybar/scripts/tuido/main.py rm 3 --index"
+		"on-click": "PYTHONPATH=$HOME/.config/waybar/scripts/tuido python -m app.main set 3 toggle --index",
+		"on-click-right": "PYTHONPATH=$HOME/.config/waybar/scripts/tuido python -m app.main set 3 reminder --index",
+		"on-click-middle": "PYTHONPATH=$HOME/.config/waybar/scripts/tuido python -m app.main rm 3 --index"
 
 	},
 	"custom/tuido_4": {
-		"exec": "python ~/.config/waybar/scripts/tuido/main.py ls --index 4",
+		"exec": "PYTHONPATH=$HOME/.config/waybar/scripts/tuido python -m app.main ls --index 4",
 		"format": "{}",
 		"tooltip": false,
 		"interval": 1,
-		"on-click": "python ~/.config/waybar/scripts/tuido/main.py set 4 toggle --index",
-		"on-click-right": "python ~/.config/waybar/scripts/tuido/main.py set 4 reminder --index",
-		"on-click-middle": "python ~/.config/waybar/scripts/tuido/main.py rm 4 --index"
+		"on-click": "PYTHONPATH=$HOME/.config/waybar/scripts/tuido python -m app.main set 4 toggle --index",
+		"on-click-right": "PYTHONPATH=$HOME/.config/waybar/scripts/tuido python -m app.main set 4 reminder --index",
+		"on-click-middle": "PYTHONPATH=$HOME/.config/waybar/scripts/tuido python -m app.main rm 4 --index"
 
 	},
 	"custom/tuido_text": {
@@ -170,11 +170,11 @@
 	"custom/tuido_tail": {
 		"format": "Click To Open Tuido in Terminal",
 		"tooltip": false,
-		"on-click": "kitty python ~/.config/waybar/scripts/tuido/main.py run_tui"
+		"on-click": "kitty sh -c 'PYTHONPATH=$HOME/.config/waybar/scripts/tuido python -m app.main run_tui'"
 	},
 	"custom/tuido_add": {
 		"format": "Add +",
-		"on-click": "kitty python ~/.config/waybar/scripts/tuido/main.py add_ui",
+		"on-click": "kitty sh -c 'PYTHONPATH=$HOME/.config/waybar/scripts/tuido python -m app.main add_tui'",
 		"tooltip": false
 	},
 	"group/tuido": {

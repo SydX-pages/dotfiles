@@ -4,8 +4,6 @@ A TUI todo-list App using with waybar
 
 # Usage
 
-## CLI
-
 ```sh
 # list all items in db.json
 python -m app.main ls
@@ -27,3 +25,5 @@ python -m app.main clear
 # tui
 python -m app.main run_tui
 ```
+
+## [my waybar](https://github.com/SydX-pages/waybar_with_widgets)

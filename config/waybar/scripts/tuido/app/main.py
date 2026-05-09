@@ -1,5 +1,5 @@
 from .cli import args_parse
-from .tui import run_tui
+from .tui import run_tui, add_tui
 from datetime import datetime
 from .task import add, remove, clear, set_status, show, get_id_by_index, set_date
 
@@ -29,3 +29,5 @@ if __name__ == "__main__":
         clear()
     elif cmd == "run_tui":
         run_tui()
+    elif cmd == "add_tui":
+        add_tui()

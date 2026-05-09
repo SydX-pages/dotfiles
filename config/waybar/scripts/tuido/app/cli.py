@@ -22,6 +22,7 @@ def args_parse():
     ls_parser.add_argument("--index", type=int)
 
     sub.add_parser("run_tui")
+    sub.add_parser("add_tui")
 
     sub.add_parser("clear")
 
