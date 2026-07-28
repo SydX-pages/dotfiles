@@ -12,56 +12,62 @@ configs:
       width: 1920
       height: 1080
   icons:
-    "trash:///":
-      row: 1
-      col: 0
-    "DC8E1AD58E1AA852":
-      row: 4
-      col: 0
-      last_seen: 1776275049260610
-    "E039-AD96":
-      row: 8
-      col: 0
-      last_seen: 1778323005495476
-    "CE247EE3247ECDC9":
-      row: 7
-      col: 0
-      last_seen: 1778323005471612
-    "78FB-FF4D":
-      row: 6
-      col: 0
-      last_seen: 1778323005449237
-    "04e2d538-aa11-43d1-9cde-3f6eec982a04":
-      row: 5
-      col: 0
-      last_seen: 1778323005427003
-    "7CB475D5B475927E":
-      row: 3
-      col: 0
-      last_seen: 1778323005380232
     "FE0C-C343":
       row: 4
       col: 0
       last_seen: 1778323005403104
-    "/home/sydx/Desktop/MyProject-portable":
+    "78FB-FF4D":
+      row: 6
+      col: 0
+      last_seen: 1778323005449237
+    "trash:///":
       row: 1
-      col: 22
-    "/home/sydx/Desktop/upan":
+      col: 0
+    "/home/sydx/Desktop/flu-qa-sys":
+      row: 3
+      col: 0
+    "/home/sydx/Desktop/flu-qa-web":
       row: 2
       col: 0
-    "/home/sydx":
-      row: 0
+    "E039-AD96":
+      row: 8
       col: 0
+      last_seen: 1778323005495476
     "/":
       row: 0
       col: 0
-    "/home/sydx/Desktop/MyProject":
-      row: 1
-      col: 22
     "A22A-CD79":
       row: 3
       col: 0
       last_seen: 1776275049245515
+    "/home/sydx/Desktop/upan":
+      row: 2
+      col: 0
+    "/home/sydx/Desktop/MyProject":
+      row: 1
+      col: 22
     "/home/sydx/Desktop/share":
       row: 0
+      col: 22
+    "7CB475D5B475927E":
+      row: 3
+      col: 0
+      last_seen: 1778323005380232
+    "/home/sydx":
+      row: 0
+      col: 0
+    "04e2d538-aa11-43d1-9cde-3f6eec982a04":
+      row: 5
+      col: 0
+      last_seen: 1778323005427003
+    "DC8E1AD58E1AA852":
+      row: 4
+      col: 0
+      last_seen: 1776275049260610
+    "CE247EE3247ECDC9":
+      row: 7
+      col: 0
+      last_seen: 1778323005471612
+    "/home/sydx/Desktop/MyProject-portable":
+      row: 1
       col: 22
