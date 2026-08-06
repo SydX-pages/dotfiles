@@ -26,9 +26,6 @@ configs:
     "/home/sydx/Desktop/flu-qa-sys":
       row: 3
       col: 0
-    "/home/sydx/Desktop/flu-qa-web":
-      row: 2
-      col: 0
     "E039-AD96":
       row: 8
       col: 0
@@ -41,6 +38,9 @@ configs:
       col: 0
       last_seen: 1776275049245515
     "/home/sydx/Desktop/upan":
+      row: 2
+      col: 0
+    "/home/sydx/Desktop/flu-qa-web":
       row: 2
       col: 0
     "/home/sydx/Desktop/MyProject":

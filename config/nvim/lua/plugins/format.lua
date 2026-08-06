@@ -5,6 +5,17 @@ return {
 		event = { "BufWritePre" }, -- 在保存前加载
 		config = function()
 			require("conform").setup({
+				formatters = {
+					prettier = {
+						args = function(_, ctx)
+							local args = { "--stdin-filepath", "$FILENAME" }
+							if vim.bo[ctx.buf].filetype == "astro" then
+								vim.list_extend(args, { "--plugin", "prettier-plugin-astro" })
+							end
+							return args
+						end,
+					},
+				},
 				formatters_by_ft = {
 					css = { "prettier" },
 					sh = { "beautysh" },
@@ -21,6 +32,7 @@ return {
 					python = { "black" },
 					java = { "google-java-format" },
 					json = { "clang-format" },
+					astro = { "prettier" },
 				},
 				format_on_save = {
 					lsp_fallback = true,

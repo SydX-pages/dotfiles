@@ -26,11 +26,39 @@ return {
 	},
 	{
 		"mason-org/mason-lspconfig.nvim",
-		opts = {},
 		dependencies = {
 			{ "mason-org/mason.nvim", opts = {} },
 			"neovim/nvim-lspconfig",
 		},
+		config = function()
+			require("mason-lspconfig").setup({})
+
+			local function find_tsdk(root_dir)
+				local candidates = {
+					root_dir and (root_dir .. "/node_modules/typescript/lib"),
+					vim.fn.stdpath("data")
+						.. "/mason/packages/typescript-language-server/node_modules/typescript/lib",
+				}
+				for _, dir in ipairs(candidates) do
+					if dir and vim.fn.isdirectory(dir) == 1 then
+						return dir
+					end
+				end
+			end
+
+			local function with_tsdk()
+				return function(_, config)
+					local tsdk = find_tsdk(config.root_dir)
+					config.init_options.typescript = config.init_options.typescript or {}
+					if tsdk then
+						config.init_options.typescript.tsdk = tsdk
+					end
+				end
+			end
+
+			vim.lsp.config("astro", { before_init = with_tsdk() })
+			vim.lsp.config("ts_ls", { before_init = with_tsdk() })
+		end,
 	},
 	{
 		"neovim/nvim-lspconfig",
