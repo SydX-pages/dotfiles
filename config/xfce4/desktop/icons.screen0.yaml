@@ -26,6 +26,9 @@ configs:
     "/home/sydx/Desktop/flu-qa-sys":
       row: 3
       col: 0
+    "/home/sydx/Desktop/flu-qa-web":
+      row: 2
+      col: 0
     "E039-AD96":
       row: 8
       col: 0
@@ -37,15 +40,15 @@ configs:
       row: 3
       col: 0
       last_seen: 1776275049245515
-    "/home/sydx/Desktop/upan":
-      row: 2
-      col: 0
-    "/home/sydx/Desktop/flu-qa-web":
+    "/home/sydx/Desktop/warp-debugging-info-20260809-093641.zip":
       row: 2
       col: 0
     "/home/sydx/Desktop/MyProject":
       row: 1
       col: 22
+    "/home/sydx/Desktop/upan":
+      row: 2
+      col: 0
     "/home/sydx/Desktop/share":
       row: 0
       col: 22

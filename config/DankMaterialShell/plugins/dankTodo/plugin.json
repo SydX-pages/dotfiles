@@ -1,0 +1,27 @@
+{
+    "id": "dankTodo",
+    "name": "Dank Todo",
+    "description": "A simple locally-saved TODO list widget for the Dank bar",
+    "version": "1.2.0",
+    "license": "MIT",
+    "author": "Deepu K Sasidharan",
+    "icon": "checklist",
+    "type": "widget",
+    "category": "productivity",
+    "component": "./DankTodoWidget.qml",
+    "settings": "./DankTodoSettings.qml",
+    "capabilities": [
+        "dankbar-widget"
+    ],
+    "compositors": [
+        "any"
+    ],
+    "distro": [
+        "any"
+    ],
+    "dependencies": [],
+    "permissions": [
+        "settings_read",
+        "settings_write"
+    ]
+}

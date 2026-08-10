@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "todos": [
+    {
+      "id": "msmyqfyzjbh0w0",
+      "text": "finish dms shell config",
+      "completed": true,
+      "parentId": null,
+      "createdAt": "2026-08-10T08:21:52.091Z",
+      "completedAt": "2026-08-10T13:51:02.541Z"
+    }
+  ]
+}

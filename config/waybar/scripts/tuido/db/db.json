@@ -40,17 +40,5 @@
     "status": 1,
     "content": "Java Final Work",
     "deadline": "2026-06-21"
-  },
-  {
-    "id": 8,
-    "status": -1,
-    "content": "header and footer components",
-    "deadline": ""
-  },
-  {
-    "id": 9,
-    "status": -1,
-    "content": "css and js for animation",
-    "deadline": ""
   }
 ]

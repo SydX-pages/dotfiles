@@ -1,1 +1,7 @@
-exec i3
+#!/bin/sh
+
+unset WAYLAND_DISPLAY
+unset WAYLAND_SOCKET
+export XDG_SESSION_TYPE=x11
+
+exec dbus-run-session startxfce4
