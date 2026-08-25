@@ -12,7 +12,7 @@ return {
 			},
 			sections = {
 				lualine_a = { "mode" },
-				lualine_b = { "branch", "diff", "diagnostics" },
+				lualine_b = { "branck", "diff", "diagnostics" },
 				lualine_c = { "filename" },
 				lualine_x = {},
 				lualine_y = { "encoding", "fileformat", "filetype", "progress" },
@@ -66,9 +66,33 @@ return {
 		opts = {},
 	},
 
+	-- lazy.nvim
+	--    {
+	--        "folke/noice.nvim",
+	--        event = "VeryLazy",
+	--        opts = {
+	--        -- add any options here
+	---        },
+	--       dependencies = {
+	--           -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+	--           "MunifTanjim/nui.nvim",
+	--           -- OPTIONAL:
+	--           --   `nvim-notify` is only needed, if you want to use the notification view.
+	--           --   If not available, we use `mini` as the fallback
+	--           "rcarriga/nvim-notify",
+	--           opts = {
+	--               --stages = "fade", -- 动画方式，可选 "fade", "slide", "fade_in_slide_out", "static"
+	--               timeout = 1000,  -- 通知停留时间（毫秒）
+	--               --top_down = false, -- 改成从下往上弹出（不会挡住顶部代码）
+	--               --render = "compact", -- 渲染方式更紧凑
+	--           },
+	--       }
+	--    }
+
 	{
 		"folke/noice.nvim",
 		event = "VeryLazy",
+
 		opts = {
 			presets = {
 				lsp_doc_border = true,
@@ -87,60 +111,13 @@ return {
 		opts = {
 			stages = "slide",
 			timeout = 1000,
+			--            top_down = false,
 		},
 		config = function(_, opts)
 			require("notify").setup(opts)
 			vim.notify = require("notify")
 		end,
 	},
-
-	{
-		"lewis6991/gitsigns.nvim",
-		event = { "BufReadPre", "BufNewFile" },
-		opts = {
-			signs = {
-				add = { text = "│" },
-				change = { text = "│" },
-				delete = { text = "_" },
-				topdelete = { text = "‾" },
-				changedelete = { text = "~" },
-			},
-			on_attach = function(bufnr)
-				local gs = package.loaded.gitsigns
-				local map = function(mode, l, r, opts)
-					opts = opts or {}
-					opts.buffer = bufnr
-					vim.keymap.set(mode, l, r, opts)
-				end
-				-- Navigation
-				map("n", "]c", function()
-					if vim.wo.diff then return "]c" end
-					vim.schedule(function() gs.next_hunk() end)
-					return "<Ignore>"
-				end, { expr = true, desc = "Next hunk" })
-				map("n", "[c", function()
-					if vim.wo.diff then return "[c" end
-					vim.schedule(function() gs.prev_hunk() end)
-					return "<Ignore>"
-				end, { expr = true, desc = "Prev hunk" })
-				-- Actions
-				map("n", "<leader>hs", gs.stage_hunk, { desc = "Stage hunk" })
-				map("n", "<leader>hr", gs.reset_hunk, { desc = "Reset hunk" })
-				map("v", "<leader>hs", function() gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") }) end, { desc = "Stage hunk" })
-				map("v", "<leader>hr", function() gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") }) end, { desc = "Reset hunk" })
-				map("n", "<leader>hS", gs.stage_buffer, { desc = "Stage buffer" })
-				map("n", "<leader>hu", gs.undo_stage_hunk, { desc = "Undo stage hunk" })
-				map("n", "<leader>hR", gs.reset_buffer, { desc = "Reset buffer" })
-				map("n", "<leader>hp", gs.preview_hunk, { desc = "Preview hunk" })
-				map("n", "<leader>hb", function() gs.blame_line({ full = true }) end, { desc = "Blame line" })
-				map("n", "<leader>hd", gs.diffthis, { desc = "Diff this" })
-				map("n", "<leader>hD", function() gs.diffthis("~") end, { desc = "Diff this ~" })
-				-- Text object
-				map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "Select hunk" })
-			end,
-		},
-	},
-
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
@@ -161,6 +138,9 @@ return {
 		config = function(_, opts)
 			require("catppuccin").setup(opts)
 			vim.cmd.colorscheme("catppuccin")
+
+			--vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+			--vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 		end,
 	},
 }

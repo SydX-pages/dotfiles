@@ -6,7 +6,7 @@ return {
 			local db = require("dashboard")
 			db.setup({
 				theme = "hyper",
-				letter_list = "abcdefghimnopqrstuvwxyz",
+				letter_list = "abcdefgimnopqrstuvwxyz",
 				config = {
 					header = {
 						[[  ______                   __  __    __  __                __    __                     __     __  __               ]],
@@ -27,10 +27,10 @@ return {
 					project = {
 						enable = true,
 						limit = 5,
-						icon = " Most Recent Projects",
+						icon = "  Most Recent Projects",
 						label = "",
 						action = function(path)
-							vim.api.nvim_set_current_dir(path)
+							vim.cmd("cd " .. path)
 							vim.cmd("e .")
 						end,
 					},

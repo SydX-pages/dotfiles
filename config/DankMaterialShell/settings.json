@@ -136,7 +136,8 @@
     {
       "id": "brightnessSlider",
       "enabled": true,
-      "width": 50
+      "width": 50,
+      "deviceName": "backlight:intel_backlight"
     },
     {
       "id": "wifi",
@@ -267,8 +268,8 @@
   "appPickerViewMode": "grid",
   "filePickerUsageHistory": {
     "mpv": {
-      "count": 2,
-      "lastUsed": 1786356528314,
+      "count": 3,
+      "lastUsed": 1786373935402,
       "name": "mpv Media Player"
     },
     "org.gnome.Nautilus": {
@@ -310,7 +311,7 @@
     },
     {
       "id": "media",
-      "enabled": false
+      "enabled": true
     },
     {
       "id": "wallpaper",
@@ -613,6 +614,10 @@
           "enabled": true
         },
         {
+          "id": "weather",
+          "enabled": true
+        },
+        {
           "id": "focusedWindow",
           "enabled": true,
           "focusedWindowSize": 0,
@@ -620,7 +625,6 @@
         }
       ],
       "centerWidgets": [
-        "weather",
         {
           "id": "clock",
           "enabled": true,
@@ -963,10 +967,45 @@
       },
       "positions": {
         "eDP-1": {
-          "x": 34.55078125,
-          "y": 81.72265625,
+          "x": 44.0625,
+          "y": 66.2109375,
           "width": 369.73828125,
           "height": 463.67578125
+        }
+      }
+    },
+    {
+      "id": "dw_1786686326358_n5uijh811",
+      "widgetType": "dankAudioVisualizer",
+      "name": "Dank Audio Visualizer",
+      "enabled": true,
+      "config": {
+        "displayPreferences": [
+          "all"
+        ],
+        "visualizationMode": "waveRings",
+        "clickThrough": false,
+        "showOnOverlay": false,
+        "showOnOverview": false,
+        "barWidth": 50,
+        "ringOpacity": 70,
+        "waveThickness": 50,
+        "fadeWhenIdle": true,
+        "showOnOverviewOnly": false,
+        "syncPositionAcrossScreens": false
+      },
+      "positions": {
+        "eDP-1": {
+          "width": 656.859375,
+          "height": 660.1640625,
+          "x": 616.80859375,
+          "y": 171.37890625
+        },
+        "_synced": {
+          "x": 0.39048868815104165,
+          "y": 0.3196903935185185,
+          "width": 411.10546875,
+          "height": 397.84765625
         }
       }
     }
