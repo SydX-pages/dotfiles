@@ -1,8 +1,9 @@
 --Conclusion
 --Alt For Fast Move and CompletionChoose;Ctrl For Insert Move;
---C-p for ColorPicker;C-f for Formatter;S-i for Infos of Functions(maybe)
+--C-f for Formatter;S-i for Infos of Functions(maybe)
 --C-s Save;C-z Undo C-r Redo;C-x BufferDelete;C-q Quit
 --fold action: za, zc,zC,zo,zO,zR,zM
+--C-b BufferPick; Alt-b BufferDeletePick
 vim.g.mapleader = "\\"
 vim.g.maplocalleader = "\\"
 
@@ -85,6 +86,9 @@ vim.keymap.set("n", "<M-=>", "<C-w>>")
 vim.keymap.set("n", "<M-->", "<C-w><")
 vim.keymap.set("n", "<M-S-=>", "<C-w>+")
 vim.keymap.set("n", "<M-S-->", "<C-w>-")
+
+vim.keymap.set("n", "<C-b>", "<Cmd>BufferPick<CR>", opts)
+vim.keymap.set("n", "<M-b>", "<Cmd>BufferPickDelete<CR>", opts)
 
 --Insert Choose
 --vim.keymap.set("i", "<S-Left>", "<C-o>v<C-o>h")
