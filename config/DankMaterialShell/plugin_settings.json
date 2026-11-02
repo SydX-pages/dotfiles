@@ -1,6 +1,7 @@
 {
   "dankTodo": {
     "enabled": true,
-    "countMode": "active"
+    "countMode": "active",
+    "storagePath": "/home/sydx/Documents/Todo/"
   }
 }

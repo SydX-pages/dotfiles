@@ -1,0 +1,11 @@
+# esp-clangd 不认识 GCC 专有 flag，去掉后才能构建 AST（否则补全/诊断全挂）
+CompileFlags:
+  Remove:
+    - -mtune=*
+    - -specs=*
+    - -fmacro-prefix-map=*
+    - -fno-shrink-wrap
+    - -fno-jump-tables
+    - -fno-tree-switch-conversion
+    - -fno-malloc-dce
+    - -fzero-init-padding-bits=*
