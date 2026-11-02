@@ -310,7 +310,8 @@ spawn-at-startup "bash" "-c" "dms run"
 //spawn-at-startup "~/.config/waybar/launch.sh"
 spawn-at-startup "bash" "-c" "fcitx5 -d"
 spawn-at-startup "bash" "-c" "sleep 1 && pkill xwayland-satell"
-spawn-at-startup "bash" "-c" "sleep 1 && /home/sydx/.local/bin/tsoff"
+//spawn-at-startup "bash" "-c" "sleep 1 && /home/sydx/.local/bin/tsoff"
+spawn-at-startup "bash" "-c" "tailscale systray"
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
