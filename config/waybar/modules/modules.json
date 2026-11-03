@@ -5,7 +5,7 @@
 	},
 	"custom/arch": {
 		"format": "󰣇",
-		"on-click": "kitty -e sh -c 'fastfetch;zsh'",
+		"on-click": "foot -e sh -c 'fastfetch;zsh'",
 		"tooltip": true,
 		"tooltip-format": "I use Arch,btw"
 	},
@@ -23,12 +23,12 @@
 	},
 	"custom/files": {
 		"format": "Files",
-		"on-click": "kitty bash ranger",
+		"on-click": "foot bash ranger",
 		"tooltip": false
 	},
 	"custom/edit": {
 		"format": "Edit",
-		"on-click": "kitty bash -c 'nvim'",
+		"on-click": "foot bash -c 'nvim'",
 		"tooltip": false
 	},
 	"custom/help": {
@@ -124,7 +124,7 @@
 		"on-click-right": "pavucontrol"
 	},
 	"backlight": {
-		"device": "intel_backlight",
+		"device": "backlight",
 		"format": "{icon} {percent}% ",
 		"format-icons": [
 			"󱩎",
@@ -146,7 +146,7 @@
 		"tooltip-format": "{ifname} ip {ipaddr} 󰩠",
 		"format-linked": "{ifname} (No IP) 󰩠",
 		"format-disconnected": "Disconnected ⚠",
-		"on-click-right": "kitty nmtui",
+		"on-click-right": "foot nmtui",
 		"on-click": "pkill -SIGUSR1 -f net_bar"
 	},
 	"custom/vpn": {
@@ -163,7 +163,7 @@
 		"tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
 		"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
 		"tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
-		"on-click": "kitty bluetoothctl"
+		"on-click": "foot bluetoothctl"
 	},
 	"battery": {
 		"states": {
@@ -186,7 +186,7 @@
 			"󰂂",
 			"󰁹"
 		],
-		"on-click-right": "kitty -e sh -c 'sudo tlp-stat -b; exec zsh'",
+		"on-click-right": "foot -e sh -c 'sudo tlp-stat -b; exec zsh'",
 		"on-click": "pkill -SIGUSR1 -f bat_bar"
 	},
 	"battery#bat2": {
@@ -218,6 +218,21 @@
 	"niri/window": {
 		"format": "{}",
 		"icon-size": 30,
+	},
+
+	"sway/workspaces": {
+		"disable-scroll": true,
+		"all-outputs": false,
+		"format": "{icon} {value}",
+		"format-icons": {
+			"urgent": "",
+			"active": "",
+			"default": ""
+		}
+	},
+	"sway/window": {
+		"format": "{}",
+		"icon-size": 30
 	}
 
 }

@@ -82,7 +82,8 @@ configuration {
 	display-filebrowser: "Files";
 
 	/*---------- Misc setting ----------*/
-	terminal: "rofi-sensible-terminal";
+	/* rofi-sensible-terminal 这台机器上没有，改用 foot（foot -e <cmd> 语法一致）*/
+	terminal: "foot";
 	font: "Mono 12";
 	sort: false;
 	threads: 0;

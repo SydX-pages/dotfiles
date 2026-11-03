@@ -1,0 +1,16 @@
+[Unit]
+Description=Touchscreen gestures for sway
+# 由 sway config 里的 `exec systemctl --user start screen-gestures.service` 启动。
+# 不 enable 也能用；手动 enable 的话会在登录时就启动（没有 sway 时会自己退出）。
+After=graphical-session.target
+
+[Service]
+Type=simple
+Environment=SWAY_SCREEN_GESTURE_DEVICE=Touchscreen
+Environment=SWAY_SCREEN_GESTURE_OUTPUT=eDP-1
+ExecStart=/usr/bin/python3 %h/.config/sway/screen-gestures.py
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=default.target

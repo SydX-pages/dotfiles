@@ -20,13 +20,13 @@
 		"format": "{} 󰩤",
 		"tooltip": false,
 		"on-click": "flatpak run io.missioncenter.MissionCenter",
-		"on-click-right": "kitty bash btop"
+		"on-click-right": "foot bash btop"
 	},
 	"cpu": {
 		"format": "Total:{usage}%\nCore0:{usage0}%\nCore1:{usage1}%\nCore2:{usage2}%\nCore3:{usage3}%\nCore4:{usage4}%\nCore5:{usage5}%\nCore6:{usage6}%\nCore7:{usage7}%\nCore8:{usage8}%\nCore9:{usage9}%\nCore10:{usage10}%\nCore11:{usage11}%",
 		"tooltip": false,
 		"on-click": "flatpak run io.missioncenter.MissionCenter",
-		"on-click-right": "kitty bash btop"
+		"on-click-right": "foot bash btop"
 	},
 	"group/memory": {
 		"modules": [
@@ -44,7 +44,7 @@
 		"format": "Memory: {used}G / {total}G ({percentage}%) | {avail}G Available\n\nSwap: {swapUsed}G / {swapTotal}G ({swapPercentage}%) | {swapAvail}G Available",
 		"tooltip": false,
 		"on-click": "flatpak run io.missioncenter.MissionCenter    ",
-		"on-click-right": "kitty bash btop"
+		"on-click-right": "foot bash btop"
 	},
 	"group/disk": {
 		"modules": [
@@ -64,14 +64,14 @@
 		"path": "/",
 		"tooltip": false,
 		"on-click": "flatpak run io.missioncenter.MissionCenter",
-		"on-click-right": "kitty bash btop"
+		"on-click-right": "foot bash btop"
 	},
 	"disk#home": {
 		"format": "{path}: \n{free} available({percentage_free}%)\n{used} used out of {total} on {path} ({percentage_used}%)",
 		"path": "/home",
 		"tooltip": false,
 		"on-click": "flatpak run io.missioncenter.MissionCenter",
-		"on-click-right": "kitty bash btop"
+		"on-click-right": "foot bash btop"
 	},
 	"group/gpu": {
 		"modules": [
@@ -90,14 +90,14 @@
 		"format": {},
 		"tooltip": false,
 		"on-click": "flatpak run io.missioncenter.MissionCenter",
-		"on-click-right": "kitty bash btop"
+		"on-click-right": "foot bash btop"
 	},
 	"custom/gpu-name": {
 		"exec": "~/.config/waybar/scripts/hardwareInfo/gpu_name.sh",
 		"format": {},
 		"tooltip": false,
 		"on-click": "flatpak run io.missioncenter.MissionCenter",
-		"on-click-right": "kitty bash btop"
+		"on-click-right": "foot bash btop"
 
 	},
 
@@ -106,14 +106,14 @@
 		"format": {},
 		"tooltip": false,
 		"on-click": "flatpak run io.missioncenter.MissionCenter",
-		"on-click-right": "kitty bash btop"
+		"on-click-right": "foot bash btop"
 
 	},
 	"custom/gpu": {
 		"format": "GPU 󰩤",
 		"tooltip": false,
 		"on-click": "flatpak run io.missioncenter.MissionCenter",
-		"on-click-right": "kitty bash btop"
+		"on-click-right": "foot bash btop"
 	},
 	"custom/tuido_0": {
 		"exec": "PYTHONPATH=$HOME/.config/waybar/scripts/tuido python -m app.main ls --index 0",
@@ -170,11 +170,11 @@
 	"custom/tuido_tail": {
 		"format": "Click To Open Tuido in Terminal",
 		"tooltip": false,
-		"on-click": "kitty sh -c 'PYTHONPATH=$HOME/.config/waybar/scripts/tuido python -m app.main run_tui'"
+		"on-click": "foot sh -c 'PYTHONPATH=$HOME/.config/waybar/scripts/tuido python -m app.main run_tui'"
 	},
 	"custom/tuido_add": {
 		"format": "Add +",
-		"on-click": "kitty sh -c 'PYTHONPATH=$HOME/.config/waybar/scripts/tuido python -m app.main add_tui'",
+		"on-click": "foot sh -c 'PYTHONPATH=$HOME/.config/waybar/scripts/tuido python -m app.main add_tui'",
 		"tooltip": false
 	},
 	"group/tuido": {

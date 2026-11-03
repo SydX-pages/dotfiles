@@ -1,0 +1,36 @@
+{
+	// sway 版顶栏：与 top_bar.jsonc 一致，只是把 niri/* 模块换成 sway/*，
+	// 并去掉写死的 width（本机 eDP-1 逻辑分辨率 1200x800，1900 会超出屏幕）
+	"layer" : "top",
+    "name": "top_bar",
+    "height": 28,
+	"spacing" : 2,
+	"modules-left" : [
+		"custom/arch",
+		"idle_inhibitor",
+
+		"custom/separator",
+        "custom/weather",
+		"custom/separator",
+		"sway/workspaces"
+	],
+	"modules-center" : ["sway/window"],
+	"modules-right" : [
+		"privacy",
+		"tray",
+
+		"custom/separator",
+		"pulseaudio",
+		"custom/separator",
+		"backlight",
+		"custom/separator",
+        "clock",
+		"custom/separator",
+		"network",
+		"custom/separator",
+		"battery"
+	],
+	// Modules configuration
+	"include" : ["~/.config/waybar/modules/modules.json"],
+	"on-sigusr1" : "noop"
+}

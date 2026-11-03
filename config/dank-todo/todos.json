@@ -2,6 +2,36 @@
   "version": 2,
   "todos": [
     {
+      "id": "mvqxlfvfvfgedk",
+      "text": "navidrome",
+      "completed": false,
+      "parentId": null,
+      "createdAt": "2026-10-27T17:00:10.780Z"
+    },
+    {
+      "id": "mvqwx368d16w6h",
+      "text": "esp gift for babe",
+      "completed": false,
+      "parentId": null,
+      "createdAt": "2026-10-27T16:41:14.576Z"
+    },
+    {
+      "id": "muz4ppvnb901d8",
+      "text": "计组实验2",
+      "completed": true,
+      "parentId": null,
+      "createdAt": "2026-10-08T06:01:54.755Z",
+      "completedAt": "2026-10-08T06:36:01.943Z"
+    },
+    {
+      "id": "muz4p8z0gbxd4l",
+      "text": "软考",
+      "completed": true,
+      "parentId": null,
+      "createdAt": "2026-10-08T06:01:32.844Z",
+      "completedAt": "2026-10-27T16:41:08.530Z"
+    },
+    {
       "id": "msogo4uvu194y8",
       "text": "esp32 desktop robot demo",
       "completed": false,

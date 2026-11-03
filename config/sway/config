@@ -1,0 +1,465 @@
+### Variables
+set $mod Mod4
+set $term foot
+
+# 平板模式：翻折成平板时自动旋转屏幕、关掉实体键盘、弹出屏幕键盘。
+# 注意 sway 的语法是 `input <identifier> events disabled|enabled`，
+# 不能写成 `input <identifier> disable`（后者运行时会报 Unknown/invalid command）。
+# 内建键盘的 identifier 是 0:0:cros_ec；可用 `swaymsg -t get_inputs` 确认。
+bindswitch tablet:on exec systemctl --user start tablet-rotate.service; input 0:0:cros_ec events disabled; exec /home/sydx/.config/sway/osk.sh show; exec notify-send 'tablet on'
+bindswitch tablet:off exec systemctl --user stop tablet-rotate.service; input 0:0:cros_ec events enabled; exec /home/sydx/.config/sway/osk.sh hide; exec notify-send 'tablet off'
+
+# 屏幕键盘（wvkbd）手动开关：$mod+Shift+o
+# 中英文输入仍走 fcitx5 —— wvkbd 只负责画键盘和注入按键
+bindsym $mod+Shift+o exec /home/sydx/.config/sway/osk.sh toggle
+
+exec sh -c 'systemctl --user import-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE; systemctl --user start dms.service'
+
+### 由 i3wm 配置转换而来（原始文件备份为 config.i3-orig.bak）
+### 语法见 man 5 sway
+###
+### 终端 foot（配置参考 ~/.config/kitty/kitty.conf）
+### 启动器 rofi（~/.config/rofi/config.rasi）
+### 状态栏 waybar（~/.config/waybar/launch.sh，会按 $SWAYSOCK 自动选 sway 版配置）
+### 通知 mako / 截图 flameshot / 锁屏 swaylock / 空闲 swayidle / 亮度 brightnessctl
+
+# DMS 的组件开关（写法参考 ~/.config/niri/dms/binds.kdl）
+set $menu dms ipc call spotlight-bar toggle
+
+# systemd/D-Bus 用户环境变量（fcitx5 等需要）
+include /etc/sway/config.d/*
+
+### Output
+# 缩放 1.75：2400x1600 → 逻辑 1371x914
+output eDP-1 scale 1.75
+# 壁纸交给 DMS 管（dms ipc call wallpaper next/prev），所以不用 output * bg
+output * bg /home/sydx/Pictures/WallPapers/wallhaven-yqkl97.jpg fill
+
+# 换壁纸（需要 swaybg）：bindsym $mod+Shift+w exec "swaybg -i ~/Pictures/WallPapers/rose_3_2.png -m fill"
+
+### Input
+# 参考 ~/.config/niri/config.kdl 的 touchpad 段：那边 natural-scroll 是关掉的，
+# 这里之前误开了 natural_scroll，所以滚动方向是反的。
+input type:touchpad {
+    dwt enabled
+    dwtp enabled
+    tap enabled
+    drag enabled
+    natural_scroll disabled      # 若你其实想要"自然滚动"（内容跟着手指走）就改成 enabled
+    middle_emulation enabled
+    scroll_method two_finger
+    pointer_accel 0.5            # = niri 的 accel-speed 0.6（这个 sway 只有 pointer_accel）
+    scroll_factor 1
+}
+# 获取设备名：swaymsg -t get_inputs
+
+### 手势
+# 触摸板：sway 1.12 自带 bindgesture（libinput），不需要额外装 libinput-gestures。
+# 语法是 <手势>:<手指数>:<方向> —— 注意手指数在方向前面，写成 swipe:up:3 会报错。
+# 方向是手指移动的方向：up = 向上划。
+# 三指左右走 workspace-switch.py：向右到最后一个时会新建一个工作区。
+bindgesture swipe:3:up    exec dms ipc call spotlight-bar toggle
+bindgesture swipe:3:down  exec dms ipc call notifications toggle
+bindgesture swipe:3:left  exec /home/sydx/.config/sway/workspace-switch.py prev
+bindgesture swipe:3:right exec /home/sydx/.config/sway/workspace-switch.py next
+
+# 四指上划：新建工作区
+bindgesture swipe:4:up    exec /home/sydx/.config/sway/new-workspace.py
+bindgesture swipe:4:down  exec dms ipc call control-center toggle
+bindgesture swipe:4:left  exec /home/sydx/.config/sway/workspace-switch.py prev
+bindgesture swipe:4:right exec /home/sydx/.config/sway/workspace-switch.py next
+
+# 新建工作区的键盘快捷键（和四指上划等价）
+bindsym $mod+Ctrl+n exec /home/sydx/.config/sway/new-workspace.py
+
+# 触摸屏：sway 的 bindgesture 只管触摸板，触摸屏由 screen-gestures.py 读取
+# /dev/input/event*（只读、不 grab，不影响正常触摸）后调用 dms/swaymsg。
+# 映射写在脚本顶部的 ACTIONS 里，默认：
+#   三指上/下/左/右 -> 启动器 / 通知中心 / 上个 / 下个工作区（向右到底会新建）
+#   四指上/下/左/右 -> 切换屏幕键盘 / 关闭当前窗口 / 通知中心 / 控制中心
+# 改完脚本后：systemctl --user restart screen-gestures.service
+
+### 基础设置
+# 壁纸 / 通知 / 特效
+exec mako                                   # i3: dunst（X11 专用，Wayland 用 mako）
+# exec swayfx --compositor fullscreen        # i3: picom，Wayland 用 swayfx（需安装）
+
+exec fcitx5 -d
+exec dbus-update-activation-environment --systemd XMODIFIERS=@im=fcitx GTK_IM_MODULE=fcitx QT_IM_MODULE=fcitx
+exec systemctl --user import-environment XMODIFIERS GTK_IM_MODULE QT_IM_MODULE
+
+exec tailscale systray
+
+# X11 程序（QQ/微信等）需要
+xwayland enable
+
+# 窗口
+default_border pixel 1
+default_floating_border pixel 1
+# 浮动窗口拖拽时的最小尺寸：没有这条，foot 之类的窗口能被拖到高度 0 然后"消失"
+floating_minimum_size 400 x 200
+# 想让某些应用浮动后是个固定大小时：resize set 的关键字必须写在值前面，
+# 即 resize set width 600px height 480px（写成 "resize set 600px width ..." 会被拒绝，
+# 而且 sway -C 检查不出来，因为 for_window 里的命令串是运行时才解析的）
+# e.g. for_window [app_id="org.pulseaudio.pavucontrol"] floating enable, resize set width 600px height 480px
+hide_edge_borders none
+# tab/stack 布局的标签就画在标题栏上。
+# 边框线粗细和文字区高度在 sway 1.10 里是分开的：
+#   titlebar_border_thickness = 高亮边框线的 px（细一点就 1 或 2）
+#   titlebar_padding 横向 纵向 = 文字区的总空间，含边框（所以要 > 边框粗细）
+# 1px 边框 + 14px 文字区：线条纤细但标签完整可读
+titlebar_border_thickness 1
+titlebar_padding 5 3
+font pango:JetBrains Mono Nerd Font 11
+floating_modifier $mod normal
+# 不再需要 i3 的 "new_window" / "new_float"：sway 新窗口默认平铺，
+# 用下面的 for_window 规则决定哪些浮动。
+
+bindsym $mod+u border none
+bindsym $mod+y border pixel 1
+bindsym $mod+p border pixel 5
+bindsym $mod+b border normal
+
+bindsym $mod+c move position center
+
+bindsym $mod+Shift+q kill
+
+# 应用启动
+bindsym $mod+Return exec $term
+bindsym $mod+d exec $menu                          # DMS: Spotlight Bar 开关
+bindsym $mod+Shift+d exec dms ipc call spotlight toggle   # DMS: 默认启动器（应用网格）
+bindsym $mod+n exec dms ipc call notifications open      # DMS: 通知中心
+bindsym $mod+Shift+n exec dms ipc call control-center toggle
+bindsym $mod+Shift+p exec dms ipc call processlist toggle # DMS: 进程列表
+bindsym $mod+Shift+w exec dms ipc call wallpaper next     # DMS: 换壁纸
+bindsym $mod+Ctrl+w exec dms ipc call wallpaper prev
+# DMS 的电源菜单（和下面 $mod+0 的 sway system 模式二选一）：
+# bindsym $mod+0 exec dms ipc call powermenu toggle
+# rofi 备用启动器：bindsym $mod+q exec rofi -show drun
+bindsym Ctrl+Shift+A exec dms screenshot
+bindsym Ctrl+Shift+space exec dms screenshot full
+bindsym $mod+z exec firefox
+bindsym $mod+backslash exec nautilus
+bindsym $mod+semicolon exec pavucontrol
+# bindsym $mod+comma exec nmtui
+# 本机没装的：thunar、flatpak io.missioncenter.MissionCenter
+#   sudo apt install thunar
+#   flatpak install flathub io.missioncenter.MissionCenter
+
+# 触摸板开关（原 TouchpadSwitch 脚本用 xinput，Wayland 下无效）
+bindsym $mod+x exec /home/sydx/.config/sway/toggle-touchpad.sh
+
+# 音量 / 亮度（Wayland 下用 --locked，wpctl 替代 pamixer）
+bindsym --locked XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bindsym --locked XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-
+bindsym --locked XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%+
+bindsym --locked Shift+XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+bindsym --locked Shift+XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+bindsym --locked XF86AudioMicMute exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+
+bindsym --locked XF86MonBrightnessDown exec brightnessctl set 1%-
+bindsym --locked Shift+XF86MonBrightnessDown exec brightnessctl set 5%-
+bindsym --locked XF86MonBrightnessUp exec brightnessctl set 1%+
+bindsym --locked Shift+XF86MonBrightnessUp exec brightnessctl set 5%+
+bindsym --locked Ctrl+XF86MonBrightnessUp exec brightnessctl -d tpacpi::kbd_backlight set 1+
+bindsym --locked Ctrl+XF86MonBrightnessDown exec brightnessctl -d tpacpi::kbd_backlight set 1-
+
+# 截图（flameshot，Wayland 下走 xdg-desktop-portal-wlr）
+bindsym --locked Print exec flameshot gui
+bindsym --locked Shift+Print exec flameshot full
+bindsym --locked Ctrl+Print exec flameshot screen
+# 注意：DMS 自带的截图（dms ipc call niri screenshot）在 sway 下不可用，
+# 实测返回 NIRI_NOT_AVAILABLE，所以设置里也找不到截图选项 —— 截图统一用 flameshot。
+
+# 切换方向
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+bindsym $mod+Ctrl+h move left
+bindsym $mod+Ctrl+j move down
+bindsym $mod+Ctrl+k move up
+bindsym $mod+Ctrl+l move right
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# workspace
+workspace_auto_back_and_forth yes
+bindsym $mod+Shift+0 workspace back_and_forth
+bindsym $mod+Shift+9 move container to workspace back_and_forth; workspace back_and_forth
+
+# 分割方向（i3 的 split h / split v → splith / splitv）
+bindsym $mod+Shift+h splith; exec notify-send 'tile horizontally'
+bindsym $mod+Shift+v splitv; exec notify-send 'tile vertically'
+# i3 的 "split toggle" 在 sway 中没有对应命令，等价的是 "layout toggle split"（见 $mod+e）
+
+bindsym $mod+f fullscreen toggle
+
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+bindsym $mod+Shift+s sticky toggle
+bindsym $mod+a focus parent
+
+# scratchpad
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
+# 切换上/下一个 workspace
+bindsym $mod+Ctrl+Right workspace next
+bindsym $mod+Ctrl+Left workspace prev
+
+# workspaces
+set $ws1 1
+set $ws2 2
+set $ws3 3
+set $ws4 4
+set $ws5 5
+set $ws6 6
+set $ws7 7
+set $ws8 8
+
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace number 9
+
+# 移动到 workspace（不跟随焦点）
+bindsym $mod+Ctrl+1 move container to workspace $ws1
+bindsym $mod+Ctrl+2 move container to workspace $ws2
+bindsym $mod+Ctrl+3 move container to workspace $ws3
+bindsym $mod+Ctrl+4 move container to workspace $ws4
+bindsym $mod+Ctrl+5 move container to workspace $ws5
+bindsym $mod+Ctrl+6 move container to workspace $ws6
+bindsym $mod+Ctrl+7 move container to workspace $ws7
+bindsym $mod+Ctrl+8 move container to workspace $ws8
+
+# 移动到 workspace 并跟随
+bindsym $mod+Shift+1 move container to workspace $ws1; workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2; workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3; workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4; workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5; workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6; workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
+
+# 浮动窗口规则
+for_window [title="图片和视频"] floating enable
+for_window [title=".*Pinta"] floating enable
+for_window [title=".*jpg|png|mp4|mp3|flac"] floating enable
+for_window [title=".*预览"] floating enable
+for_window [title=".*聊天记录"] floating enable
+for_window [title="图片查看器"] floating enable
+for_window [title="QQ"] floating enable
+for_window [title="微信"] floating enable
+for_window [title="Volume Control"] floating enable
+for_window [title="sxiv"] floating enable border none
+for_window [title="Shutter"] floating enable border normal
+for_window [title="alsamixer"] floating enable border pixel 1
+for_window [class="Calamares"] floating enable border normal
+for_window [class="Clipgrab"] floating enable
+for_window [title="File Transfer*"] floating enable
+for_window [class="Galculator"] floating enable border pixel 1
+for_window [class="GParted"] floating enable border normal
+for_window [title="i3_help"] floating enable sticky enable border normal
+for_window [class="Lightdm-gtk-greeter-settings"] floating enable
+for_window [class="Lxappearance"] floating enable sticky enable border normal
+for_window [class="Manjaro-hello"] floating enable
+for_window [class="Manjaro Settings Manager"] floating enable border normal
+for_window [title="MuseScore: Play Panel"] floating enable
+for_window [class="Nitrogen"] floating enable sticky enable border normal
+for_window [class="Oblogout"] fullscreen enable
+for_window [class="octopi"] floating enable
+for_window [title="About Pale Moon"] floating enable
+for_window [class="Pamac-manager"] floating enable
+for_window [class="Pavucontrol"] floating enable
+for_window [class="qt5ct"] floating enable sticky enable border normal
+for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
+for_window [class="Simple-scan"] floating enable border normal
+for_window [class="(?i)System-config-printer.py"] floating enable border normal
+for_window [class="Skype"] floating enable border normal
+for_window [class="Thus"] floating enable border normal
+for_window [class="Timeset-gui"] floating enable border normal
+for_window [class="(?i)virtualbox"] floating enable border normal
+for_window [class="Xfburn"] floating enable
+
+# 本机常用的浮动窗口：强制浮动 + 给个不会太小的初始尺寸
+# 语法：for_window [criteria] 命令1, 命令2
+for_window [app_id="org.pulseaudio.pavucontrol"] floating enable, resize set width 600px height 480px
+for_window [title="Volume Control"] floating enable, resize set width 600px height 480px
+for_window [app_id="flameshot"] floating enable
+for_window [class="(?i)QQ|WeChat|wechat"] floating enable, resize set width 500px height 700px
+
+# 浮动窗口被拖得太小/太大时一键复位（$mod+Ctrl+r）
+bindsym $mod+Ctrl+r exec "swaymsg 'floating enable, resize set width 900px height 600px'"
+
+# switch to workspace with urgent window automatically
+for_window [urgent=latest] focus
+
+# reload
+bindsym $mod+Shift+c reload
+
+# sway 没有 restart：退出后由登录管理器重新拉起
+bindsym $mod+Shift+r exec "swaymsg exit"
+
+# exit sway
+bindsym $mod+Shift+e exec "swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'"
+
+### 电源菜单（i3exit → swaylock / swaymsg / systemctl）
+set $lock 'swaylock -f -c 1c1c22'
+
+bindsym $mod+0 mode "system"
+mode "system" {
+    # 需要 swaylock 才能锁定
+    bindsym l exec "$lock", mode "default"
+    bindsym s exec "systemctl suspend", mode "default"
+    bindsym h exec "systemctl hibernate", mode "default"
+    bindsym u exec "swaymsg exit"
+    bindsym e exec "swaymsg exit"
+    bindsym r exec "systemctl reboot", mode "default"
+    bindsym Shift+s exec "systemctl poweroff", mode "default"
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+# 电源键：直接挂起（--locked 让它在锁屏时也能用）
+bindsym --locked XF86PowerOff exec "systemctl suspend"
+
+# 熄屏 / 点亮
+set $unblank ''
+
+# 闲置 5 分钟 → 熄屏
+# 唤醒（resume）时才锁屏：熄屏后没有任何事件会自己点亮屏幕，
+# 必须等用户真的动鼠标/按键。唤醒瞬间就上锁，中间不闪内容。
+# 事件名是 after-resume（连字符），写成 after_resume swayidle 会直接退出
+#
+# 注意：sway 由 sddm 启动，PATH 里没有 ~/.local/bin，所以这里必须写绝对路径，
+# 否则 after-resume 只会得到 "x11-probe.sh: not found"（退出码 127），
+# 而且因为 stderr 没有终端，看不到任何提示。
+# after-resume 只在真正 suspend/resume（logind 的 PrepareForSleep）后触发；
+# 只是 DPMS 熄屏再亮屏不会触发它，那种情况属于上面的 resume。
+
+exec  swayidle -w \
+        timeout 300 'swaylock -f -i /home/sydx/Pictures/WallPapers/wallhaven-yqkl97.jpg ' \
+        timeout 300 'swaymsg "output * dpms off"' \
+        resume 'swaymsg "output * dpms on"' \
+        before-sleep 'swaylock -f -i /home/sydx/Pictures/WallPapers/wallhaven-yqkl97.jpg ' \
+        after-resume '/home/sydx/.local/bin/x11-probe.sh'
+
+### Resize
+bindsym $mod+r mode "resize"
+mode "resize" {
+    bindsym h resize shrink width 5px or 5ppt
+    bindsym j resize grow height 5px or 5ppt
+    bindsym k resize shrink height 5px or 5ppt
+    bindsym l resize grow width 5px or 5ppt
+
+    bindsym Left resize shrink width 10px or 10ppt
+    bindsym Down resize grow height 10px or 10ppt
+    bindsym Up resize shrink height 10px or 10ppt
+    bindsym Right resize grow width 10px or 10ppt
+
+    # faster resize
+    bindsym Shift+Left resize shrink width 50px or 50ppt
+    bindsym Shift+Down resize grow height 50px or 50ppt
+    bindsym Shift+Up resize shrink height 50px or 50ppt
+    bindsym Shift+Right resize grow width 50px or 50ppt
+    bindsym Shift+h resize shrink width 50px or 50ppt
+    bindsym Shift+j resize grow height 50px or 50ppt
+    bindsym Shift+k resize shrink height 50px or 50ppt
+    bindsym Shift+l resize grow width 50px or 50ppt
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+### Autostart
+# 开机 / 每次 reload 都按当前平板开关状态补齐：
+# 处理“开机时已经是平板模式”以及 reload 后 sway 把 input events 重置为 enabled 的情况。
+exec_always /home/sydx/.config/sway/tablet-state.py
+
+# 触摸屏手势（触摸板手势由上面的 bindgesture 处理）
+exec systemctl --user start screen-gestures.service
+
+
+exec "/home/sydx/.local/bin/tsoff"
+# exec "/home/sydx/.local/bin/tson"
+# exec "/home/sydx/.local/bin/ProxyPreSet"    # 该脚本当前不存在
+
+### Gaps（sway 不支持负数 outer gap）
+gaps inner 6
+gaps outer 2
+smart_gaps on
+
+mode "gaps" {
+    bindsym o mode "gaps_outer"
+    bindsym i mode "gaps_inner"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Shift+g mode "gaps"
+mode "gaps_inner" {
+    bindsym plus  gaps inner current plus 5
+    bindsym minus gaps inner current minus 5
+    bindsym 0     gaps inner current set 0
+
+    bindsym Shift+plus  gaps inner all plus 5
+    bindsym Shift+minus gaps inner all minus 5
+    bindsym Shift+0     gaps inner all set 0
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+mode "gaps_outer" {
+    bindsym plus  gaps outer current plus 5
+    bindsym minus gaps outer current minus 5
+    bindsym 0     gaps outer current set 0
+
+    bindsym Shift+plus  gaps outer all plus 5
+    bindsym Shift+minus gaps outer all minus 5
+    bindsym Shift+0     gaps outer all set 0
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+### 主题颜色（sway 的 client.* 语法与 i3 相同：border background text indicator child_border）
+### 用 DMS 的主题色（~/.config/niri/dms/colors.kdl：强调色 #f92aad、未激活 #8089b3）
+client.focused          #f92aad #2a1c28 #ffffff #f92aad #2a1c28
+client.unfocused        #2a2c3a #1b1e2e #8089b3 #292d2e #1b1e2e
+client.urgent           #ff1527 #4a1020 #ffffff #ff1527 #4a1020
+client.focused_inactive #f92aad #1b1e2e #c0caf5 #f92aad #1b1e2e
+# tab/stack 里「不是当前 tab 的那些标签」：sway 1.10 新增类。
+# 它不用 indicator/child_border，只取前三个色。这里给深灰边框+暗文字，
+# 让粉色 1px 高亮只出现在当前 tab 上（默认是继承 focused_inactive，也就是一片粉）
+client.focused_tab_title #2a2c3a #1b1e2e #6b7394
+client.placeholder      #8089b3 #1b1e2e #ffffff #8089b3 #1b1e2e
+client.background       #1b1e2e
+# 原来的 i3 配色，想换回去就取消下面几行注释并注释掉上面
+# client.focused          #4c7899 #285577 #ffffff #2e9ef4 #285577
+# client.unfocused        #2f343f #1f2428 #888888 #292d2e #1f2428
+# client.urgent           #900000 #ff4444 #ffffff #ff0000 #ff0000
+# client.focused_inactive #d9d6ca #1c1c22 #d9d6ca #3e646f #3e646f
+# client.placeholder      #d9d6ca #1c1c22 #d9d6ca #3e646f #3e646f
+# client.background       #1c1c22
+
+### 状态栏：waybar（配置在 ~/.config/waybar，脚本 launch.sh 会按会话自动选 sway 版）
+# exec "$HOME/.config/waybar/launch.sh"
+

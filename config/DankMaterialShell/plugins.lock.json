@@ -1,0 +1,9 @@
+{
+  "lockfileVersion": 1,
+  "plugins": {
+    "dankAudioVisualizer": {
+      "repo": "https://github.com/odtgit/DankAudioVisualizer",
+      "commit": "25424e8d570e000f4ab086c9e5e1122180861a65"
+    }
+  }
+}

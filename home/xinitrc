@@ -4,4 +4,4 @@ unset WAYLAND_DISPLAY
 unset WAYLAND_SOCKET
 export XDG_SESSION_TYPE=x11
 
-exec dbus-run-session startxfce4
+exec dbus-run-session gnome-session

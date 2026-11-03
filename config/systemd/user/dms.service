@@ -1,0 +1,22 @@
+[Unit]
+Description=Dank Material Shell (DMS)
+# 本地修正版：上游 dms.service 声明了 BusName=org.freedesktop.Notifications，
+# 会与 mako.service 抢同一个 bus name 导致 unit 加载失败；
+# 且 Requisite=graphical-session.target 在 GDM+sway 会话里永不满足。
+# DMS 是状态栏，不该占用通知守护进程的名字。
+ConditionEnvironment=WAYLAND_DISPLAY
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/dms run --session
+ExecReload=/bin/kill -USR1 $MAINPID
+LimitNOFILE=16384:infinity
+Restart=on-failure
+RestartForceExitStatus=TEMPFAIL
+SuccessExitStatus=TEMPFAIL
+RestartSec=1.23
+TimeoutStartSec=90s
+TimeoutStopSec=10
+
+[Install]
+WantedBy=default.target

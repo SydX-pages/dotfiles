@@ -6,12 +6,12 @@
       "name": "",
       "outputs": {
         "eDP-1": {
-          "mode": "1920x1080@60.008",
+          "mode": "2400x1600@60.014",
           "position": {
             "x": 0,
             "y": 0
           },
-          "scale": 1,
+          "scale": 1.75,
           "transform": "Normal",
           "vrr": false,
           "disabled": false,
