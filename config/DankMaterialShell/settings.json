@@ -786,5 +786,11 @@
       "enabled": false
     }
   ],
-  "controlCenterIconScale": 1
+  "controlCenterIconScale": 1,
+  "customPowerActionLock": "swaylock -f -i /home/sydx/Pictures/WallPapers/wallhaven-yqkl97.jpg",
+  "acLockTimeout": 0,
+  "batteryLockTimeout": 0,
+  "lockAtStartup": false,
+  "lockBeforeSuspend": false,
+  "loginctlLockIntegration": false
 }
