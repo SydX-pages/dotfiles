@@ -1,18 +1,38 @@
 <?xml version="1.1" encoding="UTF-8"?>
 
 <channel name="xfce4-desktop" version="1.0">
-  <property name="last-settings-migration-version" type="uint" value="1"/>
   <property name="backdrop" type="empty">
-    <property name="single-workspace-mode" type="bool" value="true"/>
-    <property name="single-workspace-number" type="int" value="0"/>
     <property name="screen0" type="empty">
+      <property name="monitor0" type="empty">
+        <property name="brightness" type="empty"/>
+        <property name="color1" type="empty"/>
+        <property name="color2" type="empty"/>
+        <property name="color-style" type="empty"/>
+        <property name="image-path" type="empty"/>
+        <property name="image-show" type="empty"/>
+        <property name="last-image" type="empty"/>
+        <property name="last-single-image" type="empty"/>
+      </property>
+      <property name="monitor1" type="empty">
+        <property name="brightness" type="empty"/>
+        <property name="color1" type="empty"/>
+        <property name="color2" type="empty"/>
+        <property name="color-style" type="empty"/>
+        <property name="image-path" type="empty"/>
+        <property name="image-show" type="empty"/>
+        <property name="last-image" type="empty"/>
+        <property name="last-single-image" type="empty"/>
+      </property>
       <property name="monitoreDP-1" type="empty">
         <property name="workspace0" type="empty">
-          <property name="last-image" type="string" value="/home/sydx/Pictures/WallPapers/wallhaven-6lpkl7.jpg"/>
+          <property name="last-image" type="string" value="/home/sydx/Pictures/WallPapers/rose_3_2.png"/>
         </property>
       </property>
     </property>
+    <property name="single-workspace-mode" type="bool" value="true"/>
+    <property name="single-workspace-number" type="int" value="0"/>
   </property>
+  <property name="last-settings-migration-version" type="uint" value="1"/>
   <property name="last" type="empty">
     <property name="window-width" type="int" value="648"/>
     <property name="window-height" type="int" value="518"/>

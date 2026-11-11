@@ -8,5 +8,4 @@ BasedOnStyle: LLVM
 IndentWidth: 4
 TabWidth: 4
 UseTab: ForIndentation
-BreakBeforeBraces: Allman
 ColumnLimit: 0

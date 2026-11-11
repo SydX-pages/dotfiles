@@ -547,7 +547,9 @@
       "config": {
         "displayPreferences": [
           "all"
-        ]
+        ],
+        "visualizationMode": "waveRings",
+        "clickThrough": true
       }
     }
   ],
@@ -792,5 +794,8 @@
   "batteryLockTimeout": 0,
   "lockAtStartup": false,
   "lockBeforeSuspend": false,
-  "loginctlLockIntegration": false
+  "loginctlLockIntegration": false,
+  "iconThemePerMode": true,
+  "iconThemeLight": "WhiteSur-pink-light",
+  "appPickerViewMode": "grid"
 }

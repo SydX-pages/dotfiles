@@ -26,6 +26,13 @@
       <property name="nrows" type="uint" value="1"/>
       <property name="background-style" type="uint" value="0"/>
     </property>
+    <property name="panel-2" type="empty">
+      <property name="autohide-behavior" type="empty"/>
+      <property name="position" type="empty"/>
+      <property name="position-locked" type="empty"/>
+      <property name="size" type="empty"/>
+      <property name="plugin-ids" type="empty"/>
+    </property>
   </property>
   <property name="plugins" type="empty">
     <property name="plugin-1" type="string" value="applicationsmenu">
@@ -39,6 +46,10 @@
     <property name="plugin-2" type="string" value="tasklist">
       <property name="grouping" type="uint" value="1"/>
     </property>
+    <property name="plugin-3" type="empty">
+      <property name="expand" type="empty"/>
+      <property name="style" type="empty"/>
+    </property>
     <property name="plugin-4" type="string" value="pager">
       <property name="rows" type="uint" value="1"/>
       <property name="miniature-view" type="bool" value="true"/>
@@ -50,7 +61,13 @@
     </property>
     <property name="plugin-6" type="string" value="systray">
       <property name="square-icons" type="bool" value="true"/>
+      <property name="known-legacy-items" type="array">
+        <value type="string" value="qq"/>
+        <value type="string" value="networkmanager applet"/>
+        <value type="string" value="fcitx5 tray window"/>
+      </property>
       <property name="known-items" type="array">
+        <value type="string" value="tailscale"/>
         <value type="string" value="blueman"/>
         <value type="string" value="wechat"/>
         <value type="string" value="obs"/>
@@ -58,16 +75,10 @@
         <value type="string" value="toolbox"/>
         <value type="string" value="Fcitx"/>
       </property>
-      <property name="known-legacy-items" type="array">
-        <value type="string" value="qq"/>
-        <value type="string" value="networkmanager applet"/>
-        <value type="string" value="fcitx5 tray window"/>
-      </property>
-    </property>
-    <property name="plugin-7" type="string" value="separator">
-      <property name="style" type="uint" value="0"/>
     </property>
     <property name="plugin-8" type="string" value="clock">
+      <property name="enable-keyboard-shortcuts" type="empty"/>
+      <property name="show-notifications" type="empty"/>
       <property name="digital-layout" type="uint" value="0"/>
       <property name="timezone" type="string" value="Asia/Shanghai"/>
       <property name="mode" type="uint" value="2"/>
@@ -82,6 +93,55 @@
       <property name="style" type="uint" value="0"/>
     </property>
     <property name="plugin-10" type="string" value="actions"/>
-    <property name="plugin-13" type="string" value="power-manager-plugin"/>
+    <property name="plugin-11" type="empty">
+      <property name="style" type="empty"/>
+    </property>
+    <property name="plugin-12" type="empty"/>
+    <property name="plugin-13" type="string" value="power-manager-plugin">
+      <property name="style" type="empty"/>
+    </property>
+    <property name="plugin-14" type="empty"/>
+    <property name="plugin-15" type="empty"/>
+    <property name="plugin-16" type="empty"/>
+    <property name="plugin-17" type="empty">
+      <property name="items" type="empty"/>
+    </property>
+    <property name="plugin-18" type="empty">
+      <property name="items" type="empty"/>
+    </property>
+    <property name="plugin-19" type="empty">
+      <property name="items" type="empty"/>
+    </property>
+    <property name="plugin-20" type="empty">
+      <property name="items" type="empty"/>
+    </property>
+    <property name="plugin-21" type="empty"/>
+    <property name="plugin-22" type="empty">
+      <property name="base-directory" type="empty"/>
+    </property>
+    <property name="plugin-23" type="empty">
+      <property name="timeout" type="empty"/>
+      <property name="timeout-seconds" type="empty"/>
+      <property name="system-monitor-command" type="empty"/>
+      <property name="cpu" type="empty">
+        <property name="color" type="empty"/>
+        <property name="label" type="empty"/>
+      </property>
+      <property name="memory" type="empty">
+        <property name="enabled" type="empty"/>
+      </property>
+      <property name="network" type="empty">
+        <property name="enabled" type="empty"/>
+      </property>
+      <property name="swap" type="empty">
+        <property name="enabled" type="empty"/>
+      </property>
+      <property name="uptime" type="empty">
+        <property name="enabled" type="empty"/>
+      </property>
+    </property>
+    <property name="plugin-7" type="string" value="separator">
+      <property name="style" type="uint" value="0"/>
+    </property>
   </property>
 </channel>
