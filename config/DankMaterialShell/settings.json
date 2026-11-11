@@ -276,10 +276,6 @@
       ],
       "rightWidgets": [
         {
-          "id": "privacyIndicator",
-          "enabled": true
-        },
-        {
           "id": "systemTray",
           "enabled": true
         },
@@ -785,10 +781,10 @@
       "mode": "compact",
       "taskbarAlign": "center",
       "widgetExpansion": "popout",
-      "iconSize": 52,
+      "iconSize": 60,
       "spacing": 8,
       "itemSpacing": 8,
-      "margin": 9,
+      "margin": 12,
       "bottomGap": 0,
       "transparency": 0.4,
       "followInterfaceStyle": false,
@@ -818,12 +814,12 @@
       "maxVisibleRunningApps": 0,
       "showOverflowBadge": true,
       "showTrash": true,
-      "trashFileManager": "thunar",
+      "trashFileManager": "nautilus",
       "trashCustomCommand": "",
-      "magnification": false,
-      "magnificationScale": 130,
-      "magnificationProfile": "parabolic",
-      "magnificationExpand": false,
+      "magnification": true,
+      "magnificationScale": 160,
+      "magnificationProfile": "cosine",
+      "magnificationExpand": true,
       "order": [],
       "widgets": [
         {
@@ -1107,5 +1103,6 @@
       "row": 1
     }
   ],
-  "widgetColorMode": "default"
+  "widgetColorMode": "default",
+  "focusRingEnabled": true
 }

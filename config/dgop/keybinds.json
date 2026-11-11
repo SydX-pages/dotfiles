@@ -1,0 +1,56 @@
+{
+  "cancel": [
+    "esc",
+    "escape"
+  ],
+  "confirm": [
+    "enter"
+  ],
+  "details": [
+    "d"
+  ],
+  "group": [
+    "g"
+  ],
+  "kill": [
+    "x"
+  ],
+  "navDown": [
+    "down",
+    "j"
+  ],
+  "navUp": [
+    "up",
+    "k"
+  ],
+  "quit": [
+    "q",
+    "ctrl+c"
+  ],
+  "refresh": [
+    "r"
+  ],
+  "search": [
+    "/"
+  ],
+  "selectLeft": [
+    "left",
+    "h"
+  ],
+  "selectRight": [
+    "right",
+    "l"
+  ],
+  "sortCPU": [
+    "c"
+  ],
+  "sortMemory": [
+    "m"
+  ],
+  "sortName": [
+    "n"
+  ],
+  "sortPID": [
+    "p"
+  ]
+}

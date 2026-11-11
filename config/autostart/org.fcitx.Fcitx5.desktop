@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Fcitx 5
+Comment=Disabled systemd XDG autostart; niri starts fcitx5 after XWayland is ready
+Exec=/usr/bin/fcitx5
+Hidden=true

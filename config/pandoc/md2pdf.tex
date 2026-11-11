@@ -1,0 +1,32 @@
+% ===== 全局 Markdown -> PDF 头文件（xelatex）=====
+\usepackage{graphicx}
+\usepackage{unicode-math}          % 同时加载 fontspec
+\defaultfontfeatures{Scale=MatchLowercase}
+\defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+
+% 字体：等价于 -V mainfont / -V monofont / -V CJKmainfont
+% 用 IfFontExistsTF 做兜底，换机器（Linux）也不会直接编译失败
+\IfFontExistsTF{Inter}
+  {\setmainfont{Inter}}
+  {\setmainfont{Noto Sans}}
+\IfFontExistsTF{JetBrainsMono Nerd Font}
+  {\setmonofont{JetBrainsMono Nerd Font}}
+  {\setmonofont{DejaVu Sans Mono}}
+\usepackage[space]{xeCJK}          % space = 中英自动间距（pandoc 设 CJKmainfont 时默认就是它）
+\IfFontExistsTF{PingFang SC}
+  {\setCJKmainfont{PingFang SC}\setCJKmonofont{PingFang SC}}
+  {\setCJKmainfont{Noto Sans CJK SC}}
+
+% 页面（原来 YAML 里的 papersize + geometry）
+\usepackage[a4paper,margin=2.5cm]{geometry}
+
+% 原来 preamble.tex 的内容
+\usepackage{indentfirst}
+\setlength{\parindent}{2em}
+\let\pandocoldincludegraphics\includegraphics
+\RenewDocumentCommand{\includegraphics}{s O{} m}{%
+  \noindent
+  \IfBooleanTF{#1}
+    {\pandocoldincludegraphics*[#2]{#3}}
+    {\pandocoldincludegraphics[#2]{#3}}%
+}
