@@ -1,0 +1,7 @@
+[D-BUS Service]
+# 通知守护进程统一交给 mako。
+# 这个文件用和 MATE 同名的方式覆盖 /usr/share/dbus-1/services/org.freedesktop.mate.Notifications.service，
+# 避免没有任何通知守护进程时 D-Bus 自动拉起 mate-notification-daemon（会和 mako 抢
+# org.freedesktop.Notifications 这个名字）。
+Name=org.freedesktop.Notifications
+Exec=/usr/bin/mako

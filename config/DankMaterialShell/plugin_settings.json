@@ -1,9 +1,0 @@
-{
-  "dankTodo": {
-    "enabled": true,
-    "countMode": "active"
-  },
-  "dankAudioVisualizer": {
-    "enabled": false
-  }
-}

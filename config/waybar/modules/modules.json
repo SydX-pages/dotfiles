@@ -1,50 +1,16 @@
 {
-	"custom/separator": {
-		"format": "•",
-		"tooltip": false
-	},
-	"custom/arch": {
-		"format": "󰣇",
-		"on-click": "foot -e sh -c 'fastfetch;zsh'",
+	"custom/debian": {
+		"format": "󰣚",
+		"on-click": "rofi -show",
+		"on-click-right": "foot -e sh -c 'fastfetch;zsh'",
 		"tooltip": true,
-		"tooltip-format": "I use Arch,btw"
+		"tooltip-format": "Debian\n\nLeft-click: launcher (rofi)\nRight-click: fastfetch"
 	},
 	"idle_inhibitor": {
 		"format": "{icon}",
 		"format-icons": {
 			"activated": "",
 			"deactivated": ""
-		}
-	},
-	"custom/rofi": {
-		"format": "Finder",
-		"on-click": "rofi -show",
-		"tooltip": false
-	},
-	"custom/files": {
-		"format": "Files",
-		"on-click": "foot bash ranger",
-		"tooltip": false
-	},
-	"custom/edit": {
-		"format": "Edit",
-		"on-click": "foot bash -c 'nvim'",
-		"tooltip": false
-	},
-	"custom/help": {
-		"format": "Help",
-		"on-click": "firefox --new-window https://github.com/SydX-pages/dotfiles/blob/main/README.md",
-		"tooltip": false
-	},
-	"niri/workspaces": {
-		"disable-scroll": true,
-		"all-outputs": false,
-		"warp-on-scroll": false,
-		"format": "{icon} {value}",
-		"format-icons": {
-			"urgent": "",
-			"active": "",
-			"default": ""
 		}
 	},
 
@@ -68,11 +34,12 @@
 		"interval": 1
 	},
 	"custom/weather": {
-		"exec": "wttrbar",
+		"exec": "~/.config/waybar/scripts/weather/weather.sh",
 		"format": "{}",
 		"return-type": "json",
-		"interval": "3600",
-		"on-click-right": "firefox --new-window https://wttr.in"
+		"interval": 600,
+		"tooltip": true,
+		"on-click": "firefox --new-window https://wttr.in"
 	},
 	"privacy": {
 		"icon-spacing": 4,
@@ -137,33 +104,40 @@
 		],
 		"scroll-step": 0.5,
 		"tooltip": false,
-		"on-click": "brightnessctl -d tpacpi::kbd_backlight set 1+",
-		"on-click-right": "brightnessctl -d tpacpi::kbd_backlight set 1-"
+		"on-click": "brightnessctl set 5%+",
+		"on-click-right": "brightnessctl set 5%-"
 	},
 	"network": {
-		"format-wifi": " {essid} ({signalStrength}%) ",
-		"format-ethernet": "{ipaddr}/{cidr} 󰩠",
-		"tooltip-format": "{ifname} ip {ipaddr} 󰩠",
-		"format-linked": "{ifname} (No IP) 󰩠",
-		"format-disconnected": "Disconnected ⚠",
-		"on-click-right": "foot nmtui",
-		"on-click": "pkill -SIGUSR1 -f net_bar"
-	},
-	"custom/vpn": {
-		"format": "VPN {text}",
-		"return-type": "json",
-		"exec": "/home/sydx/.config/waybar/scripts/vpnToggle/ts_state.sh",
-		"interval": 1,
-		"on-click": "/home/sydx/.config/waybar/scripts/vpnToggle/ts_toggle.sh"
+		"format-wifi": "{icon} {signalStrength}%",
+		"format-ethernet": "󰈀 {ipaddr}",
+		"format-linked": "{ifname} (No IP) 󰈀",
+		"format-disconnected": "󰤮 offline",
+		"format-icons": [
+			"󰤯",
+			"󰤟",
+			"󰤢",
+			"󰤥",
+			"󰤨"
+		],
+		"tooltip-format-wifi": "{essid} ({signalStrength}%)\n{ifname} · {ipaddr}\n↓{bandwidthDownBytes}  ↑{bandwidthUpBytes}\n\nLeft-click: nmtui\nRight-click: network editor",
+		"tooltip-format-ethernet": "{ifname} · {ipaddr}\n↓{bandwidthDownBytes}  ↑{bandwidthUpBytes}\n\nLeft-click: nmtui\nRight-click: network editor",
+		"tooltip-format-disconnected": "Disconnected\n\nLeft-click: nmtui\nRight-click: network editor",
+		"on-click": "foot nmtui",
+		"on-click-right": "nm-connection-editor"
 	},
 	"bluetooth": {
-		"format": " {status}",
-		"format-connected": " connected",
-		"tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
-		"tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
-		"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-		"tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
-		"on-click": "foot bluetoothctl"
+		"format": "󰂯",
+		"format-connected": "󰂱 {num_connections}",
+		"format-disabled": "󰂲",
+		"format-off": "󰂲",
+		"tooltip-format": "{controller_alias} · {controller_address}\n\nLeft-click: blueman\nRight-click: turn off",
+		"tooltip-format-connected": "{controller_alias} · {controller_address}\n\nConnected devices ({num_connections}):\n{device_enumerate}\n\nLeft-click: blueman\nRight-click: turn off",
+		"tooltip-format-enumerate-connected": "{device_alias} · {device_address}",
+		"tooltip-format-enumerate-connected-battery": "{device_alias} · {device_address} · {device_battery_percentage}%",
+		"tooltip-format-disabled": "Bluetooth off\n\nLeft-click: blueman\nRight-click: turn on",
+		"tooltip-format-off": "Bluetooth off\n\nLeft-click: blueman\nRight-click: turn on",
+		"on-click": "blueman-manager",
+		"on-click-right": "bluetoothctl show | grep -q 'Powered: yes' && bluetoothctl power off || bluetoothctl power on"
 	},
 	"battery": {
 		"states": {
@@ -186,11 +160,7 @@
 			"󰂂",
 			"󰁹"
 		],
-		"on-click-right": "foot -e sh -c 'sudo tlp-stat -b; exec zsh'",
-		"on-click": "pkill -SIGUSR1 -f bat_bar"
-	},
-	"battery#bat2": {
-		"bat": "BAT2"
+		"on-click": "pkill -SIGUSR1 -f 'waybar -c .*[b]at_bar'"
 	},
 	"custom/powerpolicy": {
 		"format": "{text}",
@@ -201,23 +171,30 @@
 	},
 	"custom/power": {
 		"format": "⏻",
-		"on-click": "wlogout",
-		"tooltip-format": "PowerMenu"
+		"on-click": "~/.config/rofi/scripts/powermenu.sh",
+		"tooltip": true,
+		"tooltip-format": "Power menu\n\nLeft-click: open power menu"
 	},
-
-	"wlr/taskbar": {
-		"all-outputs": false,
-		"format": "{icon}",
-		"icon-size": 48,
-		"on-click-middle": "close",
-		"tooltip-format": "{title}",
-		"ignore-list": [],
-		"markup": true,
-		"on-click": "activate"
+	"custom/notification": {
+		"exec": "~/.config/waybar/scripts/notifications/count.sh",
+		"format": "{text}",
+		"return-type": "json",
+		"interval": 2,
+		"tooltip": true,
+		"on-click": "makoctl restore",
+		"on-click-right": "makoctl dismiss --all"
 	},
-	"niri/window": {
-		"format": "{}",
-		"icon-size": 30,
+	"custom/dnd": {
+		"exec": "~/.config/waybar/scripts/notifications/dnd.sh",
+		"format": "{text}",
+		"return-type": "json",
+		"interval": 2,
+		"tooltip": true,
+		"on-click": "makoctl mode -t do-not-disturb"
+	},
+	"sway/mode": {
+		"format": "󰒉 {}",
+		"tooltip": false
 	},
 
 	"sway/workspaces": {
@@ -232,7 +209,8 @@
 	},
 	"sway/window": {
 		"format": "{}",
-		"icon-size": 30
+		"icon-size": 30,
+		"max-length": 50
 	}
 
 }

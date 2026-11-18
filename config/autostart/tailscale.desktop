@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Exec=tailscale systray
+Hidden=false
+Name=tstray
+Comment=
+X-MATE-Autostart-Delay=0

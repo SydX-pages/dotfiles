@@ -5,9 +5,10 @@ Type=Application
 Name=plank
 Comment=
 Exec=plank
-OnlyShowIn=XFCE;
+#OnlyShowIn=XFCE;
 RunHook=0
 StartupNotify=false
 Terminal=false
 Hidden=false
+X-MATE-Autostart-Delay=0
 

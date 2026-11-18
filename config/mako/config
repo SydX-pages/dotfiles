@@ -1,0 +1,56 @@
+# mako —— Wayland 通知守护进程
+# 通知守护进程：只负责弹窗，不再有单独的“通知页面”。
+# 配色为 Jozi City Nights 主题（背景 #1b1e2e，强调色 #f92aad）。
+# 改完配置后执行：makoctl reload
+
+font=JetBrainsMono Nerd Font 11
+width=380
+height=140
+outer-margin=10,12
+margin=8
+padding=12,14
+border-size=2
+border-radius=14
+border-color=#f92aad
+background-color=#1b1e2eee
+text-color=#c0caf5
+progress-color=over #f92aad
+
+icons=1
+max-icon-size=48
+icon-path=/usr/share/icons/Papirus
+icon-location=left
+icon-border-radius=10
+
+markup=1
+actions=1
+history=1
+max-history=20
+default-timeout=6000
+max-visible=4
+group-by=app-name,summary
+
+layer=overlay
+anchor=top-right
+format=<b>%s</b>\n<span color='#a9b1d6'>%b</span>
+
+on-button-left=invoke-default-action
+on-button-middle=dismiss
+on-button-right=dismiss
+on-touch=invoke-default-action
+
+# 低优先级通知：灰边框、短一点
+[urgency=low]
+border-color=#8089b3
+default-timeout=4000
+
+# 紧急通知：不自动消失
+[urgency=critical]
+border-color=#f7768e
+background-color=#1b1e2ef5
+default-timeout=0
+
+# 勿扰模式：通知只进历史，不弹窗
+# 开关：makoctl mode -t do-not-disturb
+[mode=do-not-disturb]
+invisible=1

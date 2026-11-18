@@ -13,18 +13,16 @@ bindswitch tablet:off exec systemctl --user stop tablet-rotate.service; input 0:
 # 中英文输入仍走 fcitx5 —— wvkbd 只负责画键盘和注入按键
 bindsym $mod+Shift+o exec /home/sydx/.config/sway/osk.sh toggle
 
-exec sh -c 'systemctl --user import-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE; systemctl --user start dms.service'
-
 ### 由 i3wm 配置转换而来（原始文件备份为 config.i3-orig.bak）
 ### 语法见 man 5 sway
 ###
 ### 终端 foot（配置参考 ~/.config/kitty/kitty.conf）
 ### 启动器 rofi（~/.config/rofi/config.rasi）
-### 状态栏 waybar（~/.config/waybar/launch.sh，会按 $SWAYSOCK 自动选 sway 版配置）
+### 状态栏 waybar（~/.config/waybar/launch.sh）
 ### 通知 mako / 截图 flameshot / 锁屏 swaylock / 空闲 swayidle / 亮度 brightnessctl
 
-# DMS 的组件开关（写法参考 ~/.config/niri/dms/binds.kdl）
-set $menu dms ipc call spotlight-bar toggle
+# 启动器：rofi（rofi -show 默认进入 drun 应用列表）
+set $menu rofi -show
 
 # systemd/D-Bus 用户环境变量（fcitx5 等需要）
 include /etc/sway/config.d/*
@@ -32,10 +30,12 @@ include /etc/sway/config.d/*
 ### Output
 # 缩放 1.75：2400x1600 → 逻辑 1371x914
 output eDP-1 scale 1.75
-# 壁纸交给 DMS 管（dms ipc call wallpaper next/prev），所以不用 output * bg
-output * bg /home/sydx/Pictures/WallPapers/wallhaven-yqkl97.jpg fill
+# 壁纸由 swaybg（output bg）负责
+output * bg /home/sydx/Pictures/WallPapers/IMG_3534.PNG fill
 
-# 换壁纸（需要 swaybg）：bindsym $mod+Shift+w exec "swaybg -i ~/Pictures/WallPapers/rose_3_2.png -m fill"
+# 换壁纸可手动执行：
+#   swaymsg output "*" bg /path/to/image fill
+# 或临时用 swaybg：pkill swaybg; swaybg -i ~/Pictures/WallPapers/rose_3_2.png -m fill
 
 ### Input
 # 参考 ~/.config/niri/config.kdl 的 touchpad 段：那边 natural-scroll 是关掉的，
@@ -58,14 +58,15 @@ input type:touchpad {
 # 语法是 <手势>:<手指数>:<方向> —— 注意手指数在方向前面，写成 swipe:up:3 会报错。
 # 方向是手指移动的方向：up = 向上划。
 # 三指左右走 workspace-switch.py：向右到最后一个时会新建一个工作区。
-bindgesture swipe:3:up    exec dms ipc call spotlight-bar toggle
-bindgesture swipe:3:down  exec dms ipc call notifications toggle
+# 三指上划 = rofi 启动器；三指下划 = Esc（wtype 注入按键）。
+bindgesture swipe:3:up    exec rofi -show
+bindgesture swipe:3:down  exec wtype -k Escape
 bindgesture swipe:3:left  exec /home/sydx/.config/sway/workspace-switch.py prev
 bindgesture swipe:3:right exec /home/sydx/.config/sway/workspace-switch.py next
 
-# 四指上划：新建工作区
+# 四指上划：新建工作区；四指下划：rofi 电源菜单
 bindgesture swipe:4:up    exec /home/sydx/.config/sway/new-workspace.py
-bindgesture swipe:4:down  exec dms ipc call control-center toggle
+bindgesture swipe:4:down  exec /home/sydx/.config/rofi/scripts/powermenu.sh
 bindgesture swipe:4:left  exec /home/sydx/.config/sway/workspace-switch.py prev
 bindgesture swipe:4:right exec /home/sydx/.config/sway/workspace-switch.py next
 
@@ -73,18 +74,19 @@ bindgesture swipe:4:right exec /home/sydx/.config/sway/workspace-switch.py next
 bindsym $mod+Ctrl+n exec /home/sydx/.config/sway/new-workspace.py
 
 # 触摸屏：sway 的 bindgesture 只管触摸板，触摸屏由 screen-gestures.py 读取
-# /dev/input/event*（只读、不 grab，不影响正常触摸）后调用 dms/swaymsg。
+# /dev/input/event*（只读、不 grab，不影响正常触摸）后调用 swaymsg / rofi。
 # 映射写在脚本顶部的 ACTIONS 里，默认：
-#   三指上/下/左/右 -> 启动器 / 通知中心 / 上个 / 下个工作区（向右到底会新建）
-#   四指上/下/左/右 -> 切换屏幕键盘 / 关闭当前窗口 / 通知中心 / 控制中心
+#   三指上/下/左/右 -> rofi 启动器 / Esc / 上个 / 下个工作区（向右到底会新建）
+#   四指上/下/左/右 -> 切换屏幕键盘 / 关闭当前窗口 / （未绑定）/ 电源菜单
 # 改完脚本后：systemctl --user restart screen-gestures.service
 
 ### 基础设置
-# 壁纸 / 通知 / 特效
-exec mako                                   # i3: dunst（X11 专用，Wayland 用 mako）
+# 通知：mako（配置在 ~/.config/mako/config）
+# 已经有 mako 在跑就不再启动，避免 sway reload 时刷 "File exists" 错误
+exec sh -c 'pgrep -x mako >/dev/null || exec mako'
 # exec swayfx --compositor fullscreen        # i3: picom，Wayland 用 swayfx（需安装）
 
-exec fcitx5 -d
+exec fcitx5 --replace -d
 exec dbus-update-activation-environment --systemd XMODIFIERS=@im=fcitx GTK_IM_MODULE=fcitx QT_IM_MODULE=fcitx
 exec systemctl --user import-environment XMODIFIERS GTK_IM_MODULE QT_IM_MODULE
 
@@ -118,7 +120,9 @@ floating_modifier $mod normal
 bindsym $mod+u border none
 bindsym $mod+y border pixel 1
 bindsym $mod+p border pixel 5
-bindsym $mod+b border normal
+# $mod+b = 显示/隐藏 waybar 顶栏；原来的边框快捷键挪到 $mod+Shift+b
+bindsym $mod+b exec pkill -SIGUSR1 -f '[w]aybar -c .*sway_top_bar'
+bindsym $mod+Shift+b border normal
 
 bindsym $mod+c move position center
 
@@ -126,24 +130,20 @@ bindsym $mod+Shift+q kill
 
 # 应用启动
 bindsym $mod+Return exec $term
-bindsym $mod+d exec $menu                          # DMS: Spotlight Bar 开关
-bindsym $mod+Shift+d exec dms ipc call spotlight toggle   # DMS: 默认启动器（应用网格）
-bindsym $mod+n exec dms ipc call notifications open      # DMS: 通知中心
-bindsym $mod+Shift+n exec dms ipc call control-center toggle
-bindsym $mod+Shift+p exec dms ipc call processlist toggle # DMS: 进程列表
-bindsym $mod+Shift+w exec dms ipc call wallpaper next     # DMS: 换壁纸
-bindsym $mod+Ctrl+w exec dms ipc call wallpaper prev
-# DMS 的电源菜单（和下面 $mod+0 的 sway system 模式二选一）：
-# bindsym $mod+0 exec dms ipc call powermenu toggle
+bindsym $mod+d exec $menu
+bindsym $mod+Shift+d exec rofi -show drun
+bindsym $mod+Shift+p exec foot bash btop            # 进程列表
+# 换壁纸可手动执行：
+#   swaymsg output "*" bg /path/to/image fill
+# 电源菜单：waybar 电池下拉栏里的电源按钮，或四指下划
 # rofi 备用启动器：bindsym $mod+q exec rofi -show drun
-bindsym Ctrl+Shift+A exec dms screenshot
-bindsym Ctrl+Shift+space exec dms screenshot full
+bindsym Ctrl+Shift+A exec flameshot gui
+bindsym Ctrl+Shift+space exec flameshot full
 bindsym $mod+z exec firefox
-bindsym $mod+backslash exec nautilus
-bindsym $mod+semicolon exec pavucontrol
+bindsym $mod+backslash exec caja
+bindsym $mod+semicolon exec mate-system-monitor
 # bindsym $mod+comma exec nmtui
-# 本机没装的：thunar、flatpak io.missioncenter.MissionCenter
-#   sudo apt install thunar
+# 本机没装的：flatpak io.missioncenter.MissionCenter（进程列表已改用 btop）
 #   flatpak install flathub io.missioncenter.MissionCenter
 
 # 触摸板开关（原 TouchpadSwitch 脚本用 xinput，Wayland 下无效）
@@ -168,8 +168,6 @@ bindsym --locked Ctrl+XF86MonBrightnessDown exec brightnessctl -d tpacpi::kbd_ba
 bindsym --locked Print exec flameshot gui
 bindsym --locked Shift+Print exec flameshot full
 bindsym --locked Ctrl+Print exec flameshot screen
-# 注意：DMS 自带的截图（dms ipc call niri screenshot）在 sway 下不可用，
-# 实测返回 NIRI_NOT_AVAILABLE，所以设置里也找不到截图选项 —— 截图统一用 flameshot。
 
 # 切换方向
 bindsym $mod+h focus left
@@ -342,25 +340,21 @@ mode "system" {
 # 电源键：直接挂起（--locked 让它在锁屏时也能用）
 bindsym --locked XF86PowerOff exec "systemctl suspend"
 
-# 熄屏 / 点亮
-set $unblank ''
-
-# 闲置 5 分钟 → 熄屏
-# 唤醒（resume）时才锁屏：熄屏后没有任何事件会自己点亮屏幕，
-# 必须等用户真的动鼠标/按键。唤醒瞬间就上锁，中间不闪内容。
-# 事件名是 after-resume（连字符），写成 after_resume swayidle 会直接退出
+# 闲置：5 分钟锁屏，10 分钟熄屏
+# 锁屏壁纸和桌面壁纸一样（IMG_3534.PNG），看起来只是「变暗」，不是卡死。
+# resume 只负责点亮屏幕；真正 suspend/resume（合盖、systemctl suspend）前先锁屏。
+# 事件名是 after-resume（连字符），写成 after_resume swayidle 会直接退出。
 #
 # 注意：sway 由 sddm 启动，PATH 里没有 ~/.local/bin，所以这里必须写绝对路径，
-# 否则 after-resume 只会得到 "x11-probe.sh: not found"（退出码 127），
-# 而且因为 stderr 没有终端，看不到任何提示。
+# 否则 after-resume 只会得到 "x11-probe.sh: not found"（退出码 127）。
 # after-resume 只在真正 suspend/resume（logind 的 PrepareForSleep）后触发；
 # 只是 DPMS 熄屏再亮屏不会触发它，那种情况属于上面的 resume。
 
-exec  swayidle -w \
-        timeout 300 'swaylock -f -i /home/sydx/Pictures/WallPapers/wallhaven-yqkl97.jpg ' \
-        timeout 300 'swaymsg "output * dpms off"' \
+exec swayidle -w \
+        timeout 300 'swaylock -f -i /home/sydx/Pictures/WallPapers/IMG_3534.PNG' \
+        timeout 600 'swaymsg "output * dpms off"' \
         resume 'swaymsg "output * dpms on"' \
-        before-sleep 'swaylock -f -i /home/sydx/Pictures/WallPapers/wallhaven-yqkl97.jpg ' \
+        before-sleep 'swaylock -f -i /home/sydx/Pictures/WallPapers/IMG_3534.PNG' \
         after-resume '/home/sydx/.local/bin/x11-probe.sh'
 
 ### Resize
@@ -403,6 +397,10 @@ exec "/home/sydx/.local/bin/tsoff"
 # exec "/home/sydx/.local/bin/tson"
 # exec "/home/sydx/.local/bin/ProxyPreSet"    # 该脚本当前不存在
 
+# Cloudflare WARP 任务栏托盘。systemd 的 warp-taskbar.service 在 GDM+sway 会话里
+# 不一定能等到 graphical-session.target，所以这里兜底启动；先 pgrep 避免 reload 后重复。
+exec sh -c 'pgrep -x warp-taskbar >/dev/null || exec warp-taskbar'
+
 ### Gaps（sway 不支持负数 outer gap）
 gaps inner 6
 gaps outer 2
@@ -441,7 +439,7 @@ mode "gaps_outer" {
 }
 
 ### 主题颜色（sway 的 client.* 语法与 i3 相同：border background text indicator child_border）
-### 用 DMS 的主题色（~/.config/niri/dms/colors.kdl：强调色 #f92aad、未激活 #8089b3）
+### Jozi City Nights 配色（强调色 #f92aad、未激活 #8089b3）
 client.focused          #f92aad #2a1c28 #ffffff #f92aad #2a1c28
 client.unfocused        #2a2c3a #1b1e2e #8089b3 #292d2e #1b1e2e
 client.urgent           #ff1527 #4a1020 #ffffff #ff1527 #4a1020
@@ -460,6 +458,7 @@ client.background       #1b1e2e
 # client.placeholder      #d9d6ca #1c1c22 #d9d6ca #3e646f #3e646f
 # client.background       #1c1c22
 
-### 状态栏：waybar（配置在 ~/.config/waybar，脚本 launch.sh 会按会话自动选 sway 版）
-# exec "$HOME/.config/waybar/launch.sh"
+### 状态栏：waybar（配置在 ~/.config/waybar）
+# launch.sh 会先清理旧实例，reload 后不会出现重复状态栏；$mod+b 可切换显示
+exec "$HOME/.config/waybar/launch.sh"
 

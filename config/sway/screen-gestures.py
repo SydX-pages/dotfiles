@@ -3,12 +3,13 @@
 
 sway 自带的 bindgesture 只处理触摸板，触摸屏（Atmel maXTouch）不会产生
 libinput gesture 事件。所以这里直接读 /dev/input/event*（只读，不 grab，
-不会影响正常触摸），自己识别手指滑动，然后调用 swaymsg / dms。
+不会影响正常触摸），自己识别手指滑动，然后调用 swaymsg / rofi。
 
 默认映射（可在下面的 ACTIONS 里改）：
-  三指上 / 下 / 左 / 右         -> 启动器 / 通知中心 / 上一个 / 下一个工作区
+  三指上 / 下 / 左 / 右         -> rofi 启动器 / Esc / 上一个 / 下一个工作区
                                    （向右到最后一个工作区时会自动新建）
-  四指上 / 下 / 左 / 右         -> 切换屏幕键盘 / 关闭当前窗口 / 通知中心 / 控制中心
+  四指上 / 下 / 左 / 右         -> 切换屏幕键盘 / 关闭当前窗口 /
+                                   （未绑定）/ 电源菜单
 
 方向会跟随 tablet-rotate.py 设置的 output transform，横竖屏都能用。
 """
@@ -47,22 +48,22 @@ SETTLE = 0.10          # 手指落齐后等多久再判定（秒）
 MIN_SWIPE = 0.055      # 滑动至少要移动屏幕的 5.5%
 MAX_GESTURE = 2.0      # 一次手势最长持续时间
 
-DMS = "dms"
 SWAYMSG = "swaymsg"
 OSK = os.path.expanduser("~/.config/sway/osk.sh")
 WORKSPACE_SWITCH = ["/usr/bin/python3", os.path.expanduser("~/.config/sway/workspace-switch.py")]
+ROFI = ["rofi", "-show"]
+POWERMENU = [os.path.expanduser("~/.config/rofi/scripts/powermenu.sh")]
 
 # (手指数, 方向) -> 命令
 ACTIONS = {
-    (3, "up"): [DMS, "ipc", "call", "spotlight-bar", "toggle"],
-    (3, "down"): [DMS, "ipc", "call", "notifications", "toggle"],
+    (3, "up"): ROFI,
+    (3, "down"): ["wtype", "-k", "Escape"],
     (3, "left"): WORKSPACE_SWITCH + ["prev"],
     (3, "right"): WORKSPACE_SWITCH + ["next"],
 
     (4, "up"): [OSK, "toggle"],
     (4, "down"): [SWAYMSG, "kill"],
-    (4, "left"): [DMS, "ipc", "call", "notifications", "toggle"],
-    (4, "right"): [DMS, "ipc", "call", "control-center", "toggle"],
+    (4, "right"): POWERMENU,
 }
 
 DEBUG = os.environ.get("SWAY_SCREEN_GESTURE_DEBUG") == "1"
