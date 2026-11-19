@@ -31,9 +31,9 @@ vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#ffff77", bg = "none", bold = tru
 --"#f38ba8"
 
 vim.filetype.add({
-	extension = {
-		sh = "sh",
-	},
+    extension = {
+        sh = "sh",
+    },
 })
 
 vim.o.autoread = true
@@ -43,7 +43,7 @@ vim.opt.splitright = true
 
 -- code fold
 vim.o.foldcolumn = "1" -- 在侧边栏显示折叠列
-vim.o.foldlevel = 99 -- 默认不折叠所有代码
+vim.o.foldlevel = 99   -- 默认不折叠所有代码
 vim.o.foldlevelstart = 99
 vim.o.foldenable = true
 

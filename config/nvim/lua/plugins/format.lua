@@ -32,6 +32,7 @@ return {
                     python = { "black" },
                     java = { "google-java-format" },
                     json = { "clang-format" },
+                    jsonc = { "prettier" },
                     astro = { "prettier" },
                 },
                 format_on_save = {

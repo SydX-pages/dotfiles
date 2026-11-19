@@ -7,21 +7,21 @@ set -u
 lock_cmd=(swaylock -f -i /home/sydx/Pictures/WallPapers/IMG_3534.PNG)
 
 entries=$(
-  printf '%s\n' \
-    "󰌾  锁定" \
-    "󰒲  挂起" \
-    "󰍃  注销" \
-    "󰑓  重启" \
-    "󰐥  关机"
+    printf '%s\n' \
+        "󰌾  Lock" \
+        "󰒲  Suspend" \
+        "󰍃  Logout" \
+        "󰑓  Reboot" \
+        "󰐥  Shutdown"
 )
 
-chosen=$(printf '%s\n' "$entries" | rofi -dmenu -i -p "电源" -lines 5 \
-  -theme "$HOME/.config/rofi/powermenu.rasi")
+chosen=$(printf '%s\n' "$entries" | rofi -dmenu -i -p "PowerMenu" -lines 5 \
+    -theme "$HOME/.config/rofi/powermenu.rasi")
 
 case "$chosen" in
-  *锁定) exec "${lock_cmd[@]}" ;;
-  *挂起) exec systemctl suspend ;;
-  *注销) exec swaymsg exit ;;
-  *重启) exec systemctl reboot ;;
-  *关机) exec systemctl poweroff ;;
+    *Lock) exec "${lock_cmd[@]}" ;;
+    *Suspend) exec systemctl suspend ;;
+    *Logout) exec swaymsg exit ;;
+    *Reboot) exec systemctl reboot ;;
+    *Shutdown) exec systemctl poweroff ;;
 esac

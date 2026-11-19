@@ -34,7 +34,7 @@ prompt {
 }
 
 entry {
-    placeholder: "选择操作";
+    placeholder: "Select Option";
     text-color: #c0caf5;
 }
 

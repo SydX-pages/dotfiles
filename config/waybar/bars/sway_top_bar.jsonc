@@ -1,38 +1,36 @@
 {
-	// sway 版顶栏
-	// - 背景高透明度，只保留一条很淡的粉色底边（见 style.css 的 window#waybar.top_bar）
-	// - 电池是最后一项：左键切换右侧贴边的 bat_bar（电量 / 电源策略 / 电源按钮）
-	// - $mod+b 显示/隐藏整条顶栏（sway config 里用 SIGUSR1 切换）
-	// - 1371px 宽度下模块太多会把标题挤成省略号，模块间距统一交给 style.css
-	"layer" : "top",
-    "name": "top_bar",
-    "height": 32,
-	"spacing" : 0,
-	"modules-left" : [
-		"custom/debian",
-		"idle_inhibitor",
-        "custom/notification",
-		"custom/dnd",
-        "clock",
-        "custom/weather",
-        "sway/workspaces"
-	],
-	"modules-center" : [
-        "sway/mode",
-        "sway/window",
-        "privacy"
-    ],
-	"modules-right" : [
-        "tray",
-        "pulseaudio",
-		"backlight",
-		"network",
-		"bluetooth",
-        "custom/powerpolicy",
-        "battery",
-        "custom/power"
-	],
-	// Modules configuration
-	"include" : ["~/.config/waybar/modules/modules.json"],
-	"on-sigusr1" : "noop"
+  // sway 版顶栏
+  // - 背景高透明度，只保留一条很淡的粉色底边（见 style.css 的 window#waybar.top_bar）
+  // - 电池是最后一项：左键切换右侧贴边的 bat_bar（电量 / 电源策略 / 电源按钮）
+  // - $mod+b 显示/隐藏整条顶栏（sway config 里用 SIGUSR1 切换）
+  // - 1371px 宽度下模块太多会把标题挤成省略号，模块间距统一交给 style.css
+  "layer": "top",
+  "name": "top_bar",
+  // height 只是「最小高度」：内容（字体/图标行高 + 上下 margin）更高时会被撑开
+  "height": 22,
+  "margin-bottom": 4,
+  "spacing": 0,
+  "modules-left": [
+    "custom/debian",
+    "idle_inhibitor",
+    "sway/workspaces",
+    "custom/weather",
+    "sway/window",
+    "sway/mode",
+    "privacy",
+  ],
+  "modules-center": ["custom/notification", "clock", "custom/dnd"],
+  "modules-right": [
+    "tray",
+    "pulseaudio",
+    "backlight",
+    "network",
+    "bluetooth",
+    "custom/powerpolicy",
+    "battery",
+    "custom/power",
+  ],
+  // Modules configuration
+  "include": ["~/.config/waybar/modules/modules.json"],
+  "on-sigusr1": "noop",
 }

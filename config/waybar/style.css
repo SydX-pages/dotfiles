@@ -25,7 +25,7 @@ window#waybar {
    所以窗口级背景必须写成 window#waybar.top_bar。 */
 window#waybar.top_bar {
   background: rgba(27, 30, 46, 0.25);
-  border-bottom: 1px solid rgba(249, 42, 173, 0.35);
+  /*border-bottom: 1px solid rgba(249, 42, 173, 0.35);*/
   padding: 0 8px;
 }
 
@@ -52,7 +52,7 @@ window#waybar.top_bar {
 #custom-powerpolicy,
 #mode {
   padding: 0 8px;
-  margin: 3px 0;
+  margin: 2px 0;
   border-radius: 8px;
 }
 
@@ -65,13 +65,16 @@ window#waybar.top_bar {
 #network:hover,
 #bluetooth:hover,
 #battery:hover,
+#custom-powerpolicy:hover,
 #custom-notification:hover,
 #custom-dnd:hover {
   background: rgba(59, 66, 97, 0.55);
 }
 
 #custom-debian {
-  font-size: 18px;
+  /* 14px 行高 20，加 1px 上下 margin 后与其他模块同为 22px */
+  font-size: 14px;
+  margin: 1px 0;
   color: #d70a53;
 }
 #custom-debian:hover {
@@ -108,8 +111,8 @@ window#waybar.top_bar {
 }
 
 #workspaces button {
-  padding: 0 7px;
-  margin: 4px 2px;
+  padding: 0 6px;
+  margin: 3px 5px;
   border-radius: 7px;
   color: #8089b3;
   background: transparent;
