@@ -352,7 +352,7 @@ bindsym --locked XF86PowerOff exec "systemctl suspend"
 
 exec swayidle -w \
         timeout 300 'swaylock -f -i /home/sydx/Pictures/WallPapers/IMG_3534.PNG' \
-        timeout 600 'swaymsg "output * dpms off"' \
+        timeout 360 'swaymsg "output * dpms off"' \
         resume 'swaymsg "output * dpms on"' \
         before-sleep 'swaylock -f -i /home/sydx/Pictures/WallPapers/IMG_3534.PNG' \
         after-resume '/home/sydx/.local/bin/x11-probe.sh'

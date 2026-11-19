@@ -50,7 +50,11 @@ window#waybar.top_bar {
 #custom-dnd,
 #custom-power,
 #custom-powerpolicy,
-#mode {
+#mode,
+#memory,
+#cpu,
+#disk,
+#custom-netspeed {
   padding: 0 8px;
   margin: 2px 0;
   border-radius: 8px;
@@ -67,8 +71,37 @@ window#waybar.top_bar {
 #battery:hover,
 #custom-powerpolicy:hover,
 #custom-notification:hover,
-#custom-dnd:hover {
+#custom-dnd:hover,
+#memory:hover,
+#cpu:hover,
+#disk:hover,
+#custom-netspeed:hover {
   background: rgba(59, 66, 97, 0.55);
+}
+
+/* 资源监控：各自一个颜色，互相好区分 */
+#memory {
+  color: #7aa2f7;
+}
+#cpu {
+  color: #9ece6a;
+}
+#disk {
+  color: #ff9e64;
+}
+#custom-netspeed {
+  color: #7dcfff;
+}
+
+#memory.warning,
+#cpu.warning,
+#disk.warning {
+  color: #ff9e64;
+}
+#memory.critical,
+#cpu.critical,
+#disk.critical {
+  color: #f7768e;
 }
 
 #custom-debian {
@@ -106,6 +139,9 @@ window#waybar.top_bar {
 }
 
 /* ---------- 工作区 ---------- */
+/* 不显示图标，只用背景色区分状态：
+   empty 空工作区 / persistent 常驻 / visible 其他输出可见
+   focused(active) 当前聚焦 / urgent 紧急 */
 #workspaces {
   padding: 0 2px;
 }
@@ -114,28 +150,48 @@ window#waybar.top_bar {
   padding: 0 6px;
   margin: 3px 5px;
   border-radius: 7px;
-  color: #8089b3;
-  background: transparent;
+  color: #c0caf5;
+  background: rgba(59, 66, 97, 0.45);
   transition: all 150ms ease;
 }
 
-#workspaces button:hover {
-  background: rgba(128, 137, 179, 0.22);
-  color: #c0caf5;
-  box-shadow: none;
-  text-shadow: none;
+/* 空工作区：几乎没有背景 */
+#workspaces button.empty {
+  background: rgba(59, 66, 97, 0.12);
+  color: #565f89;
 }
 
-#workspaces button.active,
-#workspaces button.focused {
+/* 常驻工作区（persistent-workspaces 声明的） */
+#workspaces button.persistent {
+  background: rgba(122, 162, 247, 0.18);
+}
+
+/* 在其他输出上可见 */
+#workspaces button.visible {
+  background: rgba(122, 162, 247, 0.38);
+}
+
+/* 当前聚焦（部分版本用 .active，一并兼容） */
+#workspaces button.focused,
+#workspaces button.active {
   background: #f92aad;
   color: #1b1e2e;
   font-weight: 700;
 }
 
+/* 紧急窗口 */
 #workspaces button.urgent {
   background: #f7768e;
   color: #1b1e2e;
+  font-weight: 700;
+}
+
+/* hover 不覆盖 focused / urgent 的状态色 */
+#workspaces button:hover:not(.focused):not(.urgent) {
+  background: rgba(128, 137, 179, 0.35);
+  color: #c0caf5;
+  box-shadow: none;
+  text-shadow: none;
 }
 
 /* ---------- 中间窗口标题 ---------- */
@@ -150,7 +206,7 @@ window#waybar.empty #window {
 
 /* ---------- 右侧状态 ---------- */
 #clock {
-  color: #f92aad;
+  color: #73daca;
   font-weight: 700;
 }
 
@@ -191,6 +247,13 @@ window#waybar.empty #window {
   color: #7aa2f7;
 }
 
+/* 电量分级：good >60 / medium 31-60 / warning 16-30 / critical <=15 */
+#battery.good {
+  color: #9ece6a;
+}
+#battery.medium {
+  color: #e0af68;
+}
 #battery.warning {
   color: #ff9e64;
 }
@@ -198,9 +261,19 @@ window#waybar.empty #window {
   color: #f7768e;
   animation: blink 1s steps(12) infinite;
 }
-#battery.charging,
+
+/* 充电状态优先于电量分级 */
+#battery.charging {
+  color: #7dcfff;
+}
 #battery.plugged {
+  color: #7aa2f7;
+}
+#battery.full {
   color: #9ece6a;
+}
+#battery.not-charging {
+  color: #e0af68;
 }
 
 @keyframes blink {

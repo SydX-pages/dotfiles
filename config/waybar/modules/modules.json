@@ -141,8 +141,10 @@
 	},
 	"battery": {
 		"states": {
+			"critical": 15,
 			"warning": 30,
-			"critical": 15
+			"medium": 60,
+			"good": 100
 		},
 		"format": "{icon} {capacity}% ",
 		"format-full": "{icon} {capacity}% ",
@@ -167,7 +169,8 @@
 		"exec": "/home/sydx/.config/waybar/scripts/PowerPolicy/cpustate.sh",
 		"interval": 1,
 		"on-click": "/home/sydx/.config/waybar/scripts/PowerPolicy/cpupower.sh",
-		"tooltip": false
+		"tooltip": true,
+		"tooltip-format": "Left-click: switch power policy"
 	},
 	"custom/power": {
 		"format": "⏻",
@@ -200,17 +203,73 @@
 	"sway/workspaces": {
 		"disable-scroll": true,
 		"all-outputs": false,
-		"format": "{icon} {value}",
-		"format-icons": {
-			"urgent": "",
-			"active": "",
-			"default": ""
-		}
+		"format": "{value}"
 	},
 	"sway/window": {
 		"format": "{}",
 		"icon-size": 30,
 		"max-length": 50
+	},
+	"memory": {
+		"interval": 5,
+		"format": " {percentage}%",
+		"on-click": "mate-system-monitor",
+		"tooltip-format": "Memory: {used:0.1f} / {total:0.1f} GiB ({percentage}%)\nSwap: {swapUsed:0.1f} / {swapTotal:0.1f} GiB ({swapPercentage}%)",
+		"states": {
+			"warning": 80,
+			"critical": 90
+		}
+	},
+	"cpu": {
+		"interval": 2,
+		"format": " {usage}%",
+		"on-click": "mate-system-monitor",
+		"tooltip-format": "Total: {usage}%\n\nCore 0: {usage0}%\nCore 1: {usage1}%\nCore 2: {usage2}%\nCore 3: {usage3}%\nCore 4: {usage4}%\nCore 5: {usage5}%",
+		"states": {
+			"warning": 70,
+			"critical": 90
+		}
+	},
+	"disk": {
+		"interval": 30,
+		"path": "/",
+		"format": "󰋊 {percentage_used}%",
+		"on-click": "mate-system-monitor",
+		"tooltip-format": "/: {used} / {total} ({percentage_used}%)\nFree: {free}",
+		"states": {
+			"warning": 80,
+			"critical": 90
+		}
+	},
+	"custom/netspeed": {
+		"exec": "~/.config/waybar/scripts/netspeed/netspeed.sh",
+		"return-type": "json",
+		"interval": 1,
+		"on-click": "mate-system-monitor",
+		"tooltip": true
+	},
+	"group/resources": {
+		"orientation": "inherit",
+		"drawer": {
+			"transition-duration": 300
+		},
+		"modules": [
+			"memory",
+			"cpu",
+			"disk"
+		]
+	},
+	"group/power": {
+		"orientation": "inherit",
+		"drawer": {
+			"transition-duration": 300,
+			"transition-left-to-right": false
+		},
+		"modules": [
+			"battery",
+			"custom/powerpolicy",
+			"custom/power"
+		]
 	}
 
 }
